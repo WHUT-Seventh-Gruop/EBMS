@@ -1,0 +1,17 @@
+#数据库连接配置
+spring:
+  datasource:
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ebms?useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+  # JPA 生产数据库配置
+  jpa:
+    hibernate:
+      # 代表了当前数据的生成规则是 更新或者是创建数据库表
+      ddl-auto: update
+      use-new-id-generator-mappings: false
+    # 控制台是否显示sql语句
+    show-sql: true
+
+
