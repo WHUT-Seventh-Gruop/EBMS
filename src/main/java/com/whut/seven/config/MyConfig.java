@@ -25,6 +25,7 @@ public class MyConfig {
                 registry.addViewController("/register.html").setViewName("register");
                 registry.addViewController("/login.html").setViewName("login");
                 registry.addViewController("/index.html").setViewName("index");
+                registry.addViewController("/common.html").setViewName("common");
 
 
             }
