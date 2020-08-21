@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User register(String username, String password, Integer role) {
-        User user = new User(username,password,role);
+        User user = new User(username, password, role);
         return this.userDao.save(user);
     }
 
