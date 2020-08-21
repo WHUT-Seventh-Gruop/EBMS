@@ -5,7 +5,9 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 
-
+.btnn{
+    margin-top: -40px;
+}
 /* reset */
 
 html,
@@ -453,7 +455,7 @@ float:left;
 .w3layouts_more-buttn h3 {
     font-size: 15px;
     color: #fff;
-    margin-top:43px;
+    margin-top:23px;
     font-weight: 400;
 }
 .w3layouts_more-buttn a {
@@ -585,7 +587,7 @@ h1.error {
     font-size: 43px;
 }
 .w3layouts_more-buttn h3 {
-    margin-top: 40px;
+    margin-top: 20px;
 }	
 .copyrigh-wthree {
     padding: 2.7em 0em 4.2em;
