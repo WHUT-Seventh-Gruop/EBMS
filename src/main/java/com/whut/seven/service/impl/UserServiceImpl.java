@@ -18,13 +18,13 @@ public class UserServiceImpl implements UserService {
      * 用户登录
      *
      * @param username 账号
-     * @param password 密码
+     * @param password 密码(使用MD5加密
      * @param role     身份
-     * @return
+     * @return 登录的用户信息
      */
     @Override
     public User login(String username, String password, Integer role) {
-        return this.userDao.findUserByUsernameAndPasswordAndRole(username, password, role);
+        return this.userDao.findUserByUsernameAndPasswordAndRole(username, MD5Util.code(password), role);
 
     }
 }
