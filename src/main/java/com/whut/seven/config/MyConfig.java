@@ -21,7 +21,10 @@ public class MyConfig {
         WebMvcConfigurer webMvcConfigurer = new WebMvcConfigurer() {
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
-                //registry.addViewController("/").setViewName("index");
+                registry.addViewController("/").setViewName("login");
+                registry.addViewController("/register.html").setViewName("register");
+                registry.addViewController("/login.html").setViewName("login");
+                registry.addViewController("/index.html").setViewName("index");
 
 
             }

@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>校园电费缴费平台-登陆</title>
@@ -9,10 +9,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
     <!-- Meta tags -->
     <!-- font-awesome icons -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
     <!-- //font-awesome icons -->
     <!--stylesheets-->
-    <link href="css/style.css" rel='stylesheet' type='text/css' media="all">
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel='stylesheet' type='text/css' media="all">
     <!--//style sheet end here-->
 </head>
 
@@ -41,7 +41,7 @@
                     </div>
                     <div class="w3layouts_more-buttn">
                         <h3>放弃注册？
-                            <a href="login.html">返回登陆
+                            <a href="#" th:href="@{/login.html}">返回登陆
                             </a>
                         </h3>
                     </div>
@@ -49,10 +49,10 @@
 
               
             </div>
-            <div class="img-right-side">              
-                <img src="images/whutlogo.png" class="img-fluid" alt="">
+            <div class="img-right-side">
+                <img src="../static/images/whutlogo.png"th:src="@{/images/whutlogo.png}"  class="img-fluid" alt="">
                 <h3></h3>
-                <img src="images/ad_img.jpg" class="img-fluid" alt="">
+                <img src="../static/images/ad_img.jpg" th:src="@{/images/ad_img.jpg}" class="img-fluid" alt="">
             </div>
         </div>
     </div>

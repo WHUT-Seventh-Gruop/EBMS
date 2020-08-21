@@ -6,12 +6,12 @@
 <title></title>
 <link rel="icon" href="favicon.ico" type="image/ico">
 <meta name="keywords" content="武汉理工校园电费缴费平台">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/materialdesignicons.min.css" rel="stylesheet">
-<link href="css/main.css.css" rel='stylesheet' type='text/css' media="all">
+<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="../static/css/main.css.css" rel='stylesheet' type='text/css' media="all">
 <!--标签插件-->
-<link rel="stylesheet" href="js/jquery-tags-input/jquery.tagsinput.min.css">
-<link href="css/style.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../static/js/jquery-tags-input/jquery.tagsinput.min.css">
+<link href="../static/css/style.min.css" rel="stylesheet">
 </head>
   
 <body>
@@ -72,7 +72,7 @@
               <span class="lyear-toggler-bar"></span>
               <span class="lyear-toggler-bar"></span>
             </div>
-            <span class="navbar-page-title" > <strong>用户信息-缴费记录 </strong></span>
+            <span class="navbar-page-title" > <strong>电费-电费查询 </strong></span>
           </div>
           
           <ul class="topbar-right">
@@ -96,15 +96,36 @@
           
           <div class="search-area-payhistory">
             <div class="form-group">
-              <h4><strong>账单时间段</strong></h4>
+              <h4><strong>缴费单位/时间</strong></h4>
             </div>
-            <div class="search-area-payhistory-left">
-              <div class="input-daterange input-group js-datepicker" data-auto-close="false" data-date-format="yyyy-mm">
-                <input class="form-control" type="text" id="search-area-payhistory-begintime" name="example-daterange1" placeholder="从">
-                <span class="input-group-addon"><i class="mdi mdi-chevron-right"></i></span>
-                <input class="form-control" type="text" id="search-area-payhistory-endtime" name="example-daterange2" placeholder="至">
-              </div>
+
+            
+            <div class="search-area-bill-top-left">
+              <select class="form-control"  name="campus" size="1">
+                <option value="0">余家头校区</option>
+                <option value="1">南湖校区</option>
+              </select>
             </div>
+
+            <div class="search-area-bill-top-medium">
+              <select class="form-control" name="building_no" size="1">
+                <option value="0">海虹4栋</option>
+                <option value="1">海虹2栋</option>
+              </select>
+            </div>
+
+            <div class="search-area-bill-top-right">
+              <select class="form-control"  name="dormitory_no" size="1">
+                <option value="0">401</option>
+                <option value="1">402</option>
+              </select>
+            </div>
+
+            <div class="search-area-bill-top-right-right">
+              <input class="form-control js-datepicker m-b-10" type="text" id="create_time" name="" placeholder="年份-月份" value="" data-date-format="yyyy-mm">
+            </div>
+
+           
             <div class="search-area-payhistory-right">
               <button class="btn btn-dark mybtn" ><i class="mdi mdi-search-web"></i><strong>查询</strong></button>        
           </div>
@@ -122,7 +143,8 @@
                   <th>时间</th>
                   <th>用电量</th>
                   <th>电费</th>
-                  <th>付款时间</th>
+                  <th>是否支付</th>
+                  <th>操作</th>
                 </tr>
               </thead>
               <tbody>
@@ -134,7 +156,11 @@
                   <td>2012/12</td>
                   <td>50度</td>
                   <td>100元</td>
-                  <td>2012-12-01 17：53</td>
+                  <td>是</td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-xs btn-default" href="pay.html" title="缴费" data-toggle="tooltip"><i class="mdi  mdi-cash-usd"></i></a>
+                  </td>
                 </tr>            
               </tbody>
             </table>
@@ -150,20 +176,20 @@
   </div>
 </div>
 
-<script type="text/javascript" src="js/jquery.min.js" ></script>
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="../static/js/jquery.min.js" ></script>
+<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../static/js/perfect-scrollbar.min.js"></script>
 <!--标签插件-->
-<script src="js/jquery-tags-input/jquery.tagsinput.min.js"></script>
-<script type="text/javascript" src="js/main.min.js"></script>
+<script src="../static/js/jquery-tags-input/jquery.tagsinput.min.js"></script>
+<script type="text/javascript" src="../static/js/main.min.js"></script>
 
 <!--时间选择插件-->
-<script src="js/bootstrap-datetimepicker/moment.min.js"></script>
-<script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
-<script src="js/bootstrap-datetimepicker/locale/zh-cn.js"></script>
+<script src="../static/js/bootstrap-datetimepicker/moment.min.js"></script>
+<script src="../static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../static/js/bootstrap-datetimepicker/locale/zh-cn.js"></script>
 <!--日期选择插件-->
-<script src="js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-<script src="js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<script src="../static/js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="../static/js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 
 </body>
 </html>

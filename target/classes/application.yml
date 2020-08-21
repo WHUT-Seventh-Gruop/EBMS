@@ -14,4 +14,7 @@ spring:
     # 控制台是否显示sql语句
     show-sql: true
 
+server:
+    address:0.0.0.0
+
 
