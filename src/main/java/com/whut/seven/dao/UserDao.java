@@ -29,4 +29,18 @@ public interface UserDao extends JpaRepository<User, Long> {
      */
     User findUserByUsernameAndPasswordAndRole(String username, String password, Integer role);
 
+    /**
+     * 根据用户名查找用户
+     * @param userName 用户名
+     * @return 用户信息
+     */
+    User findUserByUsername(String userName);
+
+    /**
+     * 根据用户名删除用户
+     * @param userName 用户名
+     * @return 删除的用户信息
+     */
+    User deleteByUsername(String userName);
+
 }
