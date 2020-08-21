@@ -1,0 +1,51 @@
+.sidebar-header-content h4{color:#60baaf; padding-top: 20px;}
+.sidebar-header{height: 10%;background-color:#3a3d6e;text-align: center;}
+.sidebar-header-content{ background-color:#3a3d6e;height:100% ;}
+.nav{background-color:#3a3d6e; color:#60baaf; }
+.lyear-layout-sidebar-scroll-area{height:80%;background-color:#3a3d6e; color:#60baaf;}
+.lyear-layout-sidebar-scroll{    border-bottom: 4px solid #3a3d6e;
+   }
+
+
+.card-body{
+    border:solid 2.5px #3a3d6e;
+    box-shadow: 4px 4px 3px #888888;
+}
+
+.card-header ,.card-header h4{
+    background-color:#3a3d6e; 
+    color:#60baaf;
+}
+
+
+.card-updatepassword{
+    width:60%;
+    margin:auto;
+    margin-top: 2%;
+}
+
+.mybtn{
+    background-color:#3a3d6e; 
+    color:#60baaf;
+
+    margin-left:10 0px;
+}
+
+
+.search-area-payhistory-left{
+    width: 70%;
+    float:left;
+}
+.search-area-payhistory-right{
+    text-align: center;
+   
+}
+
+.vain-area{
+    height:20px;
+}
+
+
+
+
+
