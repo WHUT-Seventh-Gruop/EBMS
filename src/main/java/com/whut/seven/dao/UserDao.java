@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @Author Zrt
  * @Date 2020/8/19 15:25
  */
-public interface UserDao extends JpaRepository<User, Long> {
+public interface UserDao extends JpaRepository<User, String> {
 
     /**
      * 登陆

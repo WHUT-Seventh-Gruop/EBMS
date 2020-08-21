@@ -48,4 +48,11 @@ public interface BackUserService {
      */
     User deleteAdminByUsername(String username,Integer role);
 
+    /**
+     * 根据用户名查找用户
+     * @param userName 用户名
+     * @return 用户信息
+     */
+    User findByUsername(String userName);
+
 }

@@ -76,4 +76,15 @@ public class BackUserServiceImpl implements BackUserService {
     public User deleteAdminByUsername(String username, Integer role) {
         return userDao.deleteByUsername(username);
     }
+
+    /**
+     * 根据用户名查找用户
+     *
+     * @param userName 用户名
+     * @return 用户信息
+     */
+    @Override
+    public User findByUsername(String userName) {
+        return userDao.findUserByUsername(userName);
+    }
 }
