@@ -41,6 +41,14 @@ public class User {
         this.role = role;
     }
 
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
     public List<Electricity> getElectricityList() {
         return electricityList;
     }
