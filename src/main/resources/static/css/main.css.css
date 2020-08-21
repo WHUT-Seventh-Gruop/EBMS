@@ -11,6 +11,9 @@
     border:solid 2.5px #3a3d6e;
     box-shadow: 4px 4px 3px #888888;
 }
+.paymentsuccess {
+width:100%;
+}
 
 .card-header ,.card-header h4{
     background-color:#3a3d6e; 
@@ -45,6 +48,38 @@
     height:20px;
 }
 
+.search-area-bill-top-left{
+    width:15%;
+    float:left;
+    text-align: center;
+}
+
+.search-area-bill-top-medium{
+    width:15%;
+    float:left;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.search-area-bill-top-right{
+    width:10%;
+    float:left;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.search-area-bill-top-right-right{
+ 
+    float:left;
+    text-align: center;
+    margin-left: 20px;
+    margin-top: -3px;
+}
+
+.purple-border{
+   
+    border-radius: 4px;
+}
 
 
 

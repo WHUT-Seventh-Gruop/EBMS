@@ -71,7 +71,7 @@
               <span class="lyear-toggler-bar"></span>
               <span class="lyear-toggler-bar"></span>
             </div>
-            <span class="navbar-page-title" > <strong>用户信息-密码修改 </strong></span>
+            <span class="navbar-page-title" > <strong>电费-缴费 </strong></span>
           </div>
           
           <ul class="topbar-right">
@@ -91,43 +91,56 @@
     <main class="lyear-layout-content">     
       <div class="container-fluid">
         <div class=" card-updatepassword card">
-          <div class="card-header"><h4><strong>密码修改</strong></h4></div>
+          <div class="card-header"><h4><strong>电费账单</strong></h4></div>
           <div class="card-body">      
             <form action="#" method="post" >
               <div class="form-group">
-                <label for="oldpassword">原密码</label>
-                <input class="form-control" type="password" id="oldpassword" name="oldpassword" placeholder="请输入原密码">
+                <label >账单编号</label>
+                <input class="form-control" type="text"  value="202007081178" disabled>
               </div>
+
               <div class="form-group">
-                <label for="newpassword">新密码</label>
-                <input class="form-control" type="password" id="newpassword" name="newpassword" placeholder="请输入新密码">
+                <label >住宅区域</label>
+                <input class="form-control" type="text"  value="余家头校区海虹4栋401" disabled>
               </div>
+
               <div class="form-group">
-                <label for="repassword">新密码</label>
-                <input class="form-control" type="password" id="repassword" name="repassword" placeholder="请再次输入新密码">
+                <label >账单时间</label>
+                <input class="form-control" type="text"  value="2020-07" disabled>
               </div>
-            
+
+              <div class="form-group">
+                <label >用电量</label>
+                <input class="form-control" type="text"  value="100度" disabled>
+              </div>
+
+              <div class="form-group">
+                <label >电费</label>
+                <input class="form-control" type="text"  value="100元" disabled>
+              </div>
+
+        
               <div class="form-group">
              
-                <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                 <div class="modal-dialog purple-border" role="document">
-                   <div class="modal-content">
-                     <div class="modal-header">
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                       <h4 class="modal-title" id="myModalLabel"><strong>提示</strong></h4>
-                     </div>
-                     <div class="modal-body">
-                       <strong>"您成功修改密码！"</strong>
-                     </div>
-                     <div class="modal-footer ">
-                       <a href="index.html" type="button" class="btn btn-success" ><i class="mdi mdi-home"></i>返回</a>                     
-                     </div>
-                   </div>
-                 </div>
-               </div>
-
-               <button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#myModal" ><i class="mdi mdi-checkbox-marked-circle-outline"></i><strong>修改</strong></button>
-             </div>
+                 <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog purple-border" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel"><strong>提示</strong></h4>
+                      </div>
+                      <div class="modal-body">
+                        <strong>即将跳转到第三方支付</strong>
+                      </div>
+                      <div class="modal-footer ">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <a type="button" class="btn btn-success"  href="paymentplatform.html">继续</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#myModal" ><i class="mdi mdi-checkbox-marked-circle-outline"></i><strong>缴费</strong></button>
+              </div>
             </form>     
           </div>
         </div>
@@ -143,5 +156,6 @@
 <!--标签插件-->
 <script src="js/jquery-tags-input/jquery.tagsinput.min.js"></script>
 <script type="text/javascript" src="js/main.min.js"></script>
+
 </body>
 </html>

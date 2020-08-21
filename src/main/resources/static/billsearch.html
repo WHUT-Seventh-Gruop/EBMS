@@ -36,10 +36,11 @@
             <li class="nav-item nav-item-has-subnav">
               <a href="javascript:void(0)"><i class="mdi mdi-account-circle"></i><strong>用户信息</strong></a>
               <ul class="nav nav-subnav">               
-                <li> <a href="#"><i class="mdi mdi-account-card-details"></i><strong> 修改密码</strong></a> </li>
+                <li> <a href="updatepassword.html"><i class="mdi mdi-account-card-details"></i><strong> 密码修改</strong></a> </li>
                 <li> <a href="#"><i class="mdi mdi-receipt"></i><strong> 缴费记录</strong></a> </li>
               </ul>           
             </li>
+
             <li class="nav-item nav-item-has-subnav">
               <a href="javascript:void(0)"><i class="mdi mdi-pulse"></i><strong>电费</strong></a>
               <ul class="nav nav-subnav">
@@ -71,7 +72,7 @@
               <span class="lyear-toggler-bar"></span>
               <span class="lyear-toggler-bar"></span>
             </div>
-            <span class="navbar-page-title" > <strong>用户信息-密码修改 </strong></span>
+            <span class="navbar-page-title" > <strong>电费-电费查询 </strong></span>
           </div>
           
           <ul class="topbar-right">
@@ -90,47 +91,85 @@
     <!--页面主要内容-->
     <main class="lyear-layout-content">     
       <div class="container-fluid">
-        <div class=" card-updatepassword card">
-          <div class="card-header"><h4><strong>密码修改</strong></h4></div>
-          <div class="card-body">      
-            <form action="#" method="post" >
-              <div class="form-group">
-                <label for="oldpassword">原密码</label>
-                <input class="form-control" type="password" id="oldpassword" name="oldpassword" placeholder="请输入原密码">
-              </div>
-              <div class="form-group">
-                <label for="newpassword">新密码</label>
-                <input class="form-control" type="password" id="newpassword" name="newpassword" placeholder="请输入新密码">
-              </div>
-              <div class="form-group">
-                <label for="repassword">新密码</label>
-                <input class="form-control" type="password" id="repassword" name="repassword" placeholder="请再次输入新密码">
-              </div>
-            
-              <div class="form-group">
-             
-                <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                 <div class="modal-dialog purple-border" role="document">
-                   <div class="modal-content">
-                     <div class="modal-header">
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                       <h4 class="modal-title" id="myModalLabel"><strong>提示</strong></h4>
-                     </div>
-                     <div class="modal-body">
-                       <strong>"您成功修改密码！"</strong>
-                     </div>
-                     <div class="modal-footer ">
-                       <a href="index.html" type="button" class="btn btn-success" ><i class="mdi mdi-home"></i>返回</a>                     
-                     </div>
-                   </div>
-                 </div>
-               </div>
+   
+        <div class="card-body">
+          
+          <div class="search-area-payhistory">
+            <div class="form-group">
+              <h4><strong>缴费单位/时间</strong></h4>
+            </div>
 
-               <button class="btn btn-secondary " type="button"  data-toggle="modal" data-target="#myModal" ><i class="mdi mdi-checkbox-marked-circle-outline"></i><strong>修改</strong></button>
-             </div>
-            </form>     
+            
+            <div class="search-area-bill-top-left">
+              <select class="form-control"  name="campus" size="1">
+                <option value="0">余家头校区</option>
+                <option value="1">南湖校区</option>
+              </select>
+            </div>
+
+            <div class="search-area-bill-top-medium">
+              <select class="form-control" name="building_no" size="1">
+                <option value="0">海虹4栋</option>
+                <option value="1">海虹2栋</option>
+              </select>
+            </div>
+
+            <div class="search-area-bill-top-right">
+              <select class="form-control"  name="dormitory_no" size="1">
+                <option value="0">401</option>
+                <option value="1">402</option>
+              </select>
+            </div>
+
+            <div class="search-area-bill-top-right-right">
+              <input class="form-control js-datepicker m-b-10" type="text" id="create_time" name="" placeholder="年份-月份" value="" data-date-format="yyyy-mm">
+            </div>
+
+           
+            <div class="search-area-payhistory-right">
+              <button class="btn btn-dark mybtn" ><i class="mdi mdi-search-web"></i><strong>查询</strong></button>        
           </div>
-        </div>
+
+         <div class="vain-area"></div>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              
+              <thead>
+                <tr>
+                  <th>编号</th>
+                  <th>校区</th>
+                  <th>楼栋</th>
+                  <th>房号</th>
+                  <th>时间</th>
+                  <th>用电量</th>
+                  <th>电费</th>
+                  <th>是否支付</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>余家头校区</td>
+                  <td>海虹4栋</td>
+                  <td>401</td>
+                  <td>2012/12</td>
+                  <td>50度</td>
+                  <td>100元</td>
+                  <td>是</td>
+                  <td>
+                    <div class="btn-group">
+                      <a class="btn btn-xs btn-default" href="pay.html" title="缴费" data-toggle="tooltip"><i class="mdi  mdi-cash-usd"></i></a>
+                  </td>
+                </tr>            
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pagination">
+            <a href="#!"class="btn btn-dark btn-sm" ><i class="mdi mdi-arrow-left-thick"></i><strong>上一页</strong></a>
+            <a href="#!" class="btn btn-dark btn-sm" ><i class="mdi mdi-arrow-right-thick"></i><strong>下一页</strong></a>
+          </div>
       </div>    
     </main>
     <!--End 页面主要内容-->
@@ -143,5 +182,14 @@
 <!--标签插件-->
 <script src="js/jquery-tags-input/jquery.tagsinput.min.js"></script>
 <script type="text/javascript" src="js/main.min.js"></script>
+
+<!--时间选择插件-->
+<script src="js/bootstrap-datetimepicker/moment.min.js"></script>
+<script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="js/bootstrap-datetimepicker/locale/zh-cn.js"></script>
+<!--日期选择插件-->
+<script src="js/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+
 </body>
 </html>
