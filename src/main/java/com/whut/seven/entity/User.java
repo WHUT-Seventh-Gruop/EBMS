@@ -35,6 +35,12 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Electricity> electricityList = new ArrayList<>();
 
+    public User(String username, String password, Integer role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
     public List<Electricity> getElectricityList() {
         return electricityList;
     }

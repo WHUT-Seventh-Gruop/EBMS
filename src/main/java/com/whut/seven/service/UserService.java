@@ -26,4 +26,11 @@ public interface UserService {
      * @return 注册的用户信息
      */
     User register(String username, String password, Integer role);
+
+    /**
+     * 注册用户
+     * @param user 注册的用户信息
+     * @return 返回注册的信息
+     */
+    User register(User user);
 }
