@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head">
+<head th:fragment="head(title)">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <link rel="icon" href="favicon.ico" type="image/ico">
 <meta name="keywords" content="武汉理工校园电费缴费平台">
+  <title th:replace="${title}"></title>
 <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 <link href="../static/css/materialdesignicons.min.css" th:href="@{/css/materialdesignicons.min.css}" rel="stylesheet">
 <link href="../static/css/main.css.css" th:href="@{/css/main.css.css}" rel='stylesheet' type='text/css' media="all">
