@@ -5,11 +5,13 @@ import com.whut.seven.entity.User;
 import com.whut.seven.service.UserService;
 import com.whut.seven.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @Author Zrt
  * @Date 2020/8/20 22:02
  */
+@Service
 public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;

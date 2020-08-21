@@ -4,6 +4,7 @@ import com.whut.seven.dao.UserDao;
 import com.whut.seven.entity.User;
 import com.whut.seven.service.BackUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @Author Zrt
  * @Date 2020/8/21 21:00
  */
+@Service
 public class BackUserServiceImpl implements BackUserService {
     @Autowired
     private UserDao userDao;
