@@ -2,6 +2,7 @@ package com.whut.seven.controller;
 
 import com.whut.seven.entity.User;
 import com.whut.seven.service.UserService;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/user")
@@ -52,5 +54,19 @@ public class UserController {
           }
 
 
+    }
+
+    @RequestMapping("/checkName")
+    @ResponseBody
+    public String  checkName(String username){
+        JSONObject jsonObject=new JSONObject();
+        User user=this.userService.findByName(username);
+        if(user!=null){
+            jsonObject.put("result","2");//用户已经存在
+        }else{
+            jsonObject.put("result","1");//用户不存在
+        }
+
+        return jsonObject.toString();
     }
 }

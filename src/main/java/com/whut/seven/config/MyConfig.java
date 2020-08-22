@@ -32,6 +32,7 @@ public class MyConfig {
                 registry.addViewController("paysuccess.html").setViewName("paysuccess");
                 registry.addViewController("payhistory.html").setViewName("payhistory");
                 registry.addViewController("updatepassword.html").setViewName("updatepassword");
+                registry.addViewController("signupsuccess.html").setViewName("signupsuccess");
 
                 registry.addViewController("admin-bill.html").setViewName("admin/bill");
                 registry.addViewController("admin-unit.html").setViewName("admin/unit");
@@ -39,7 +40,7 @@ public class MyConfig {
                 registry.addViewController("admin-elec.html").setViewName("admin/elec");
                 registry.addViewController("admin-login.html").setViewName("admin/login");
                 registry.addViewController("admin-bill-upd.html").setViewName("admin/bill-upd");
-                registry.addViewController("admin-psd.html").setViewName("admin/password");
+                registry.addViewController("admin-password.html").setViewName("admin/password");
                 registry.addViewController("admin-bill-add.html").setViewName("admin/bill-add");
 
             }
