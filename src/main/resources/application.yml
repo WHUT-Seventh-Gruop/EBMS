@@ -2,7 +2,7 @@
 spring:
   datasource:
     username: root
-    password: 295269
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/ebms?useSSL=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
   # JPA 生产数据库配置
@@ -14,7 +14,5 @@ spring:
     # 控制台是否显示sql语句
     show-sql: true
 
-server:
-    address:0.0.0.0
 
 
