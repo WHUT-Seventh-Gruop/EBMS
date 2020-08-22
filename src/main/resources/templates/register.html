@@ -25,7 +25,9 @@
                 <form th:action="@{/login/register}" action="#" method="post">
                     <div class="form-left-to-w3l">
                         <span class="fa fa-user-o" aria-hidden="true"></span>
-                        <input type="username" name="username" autocomplete="off"  placeholder="用户名" required="">                   
+                        <input type="username" id="username" name="username" autocomplete="off"  placeholder="用户名" required="">
+                        <span class="fa fa-smile-o"  id="usernamecorrect"  style="display:none;" aria-hidden="true"></span>
+                        <span class="fa fa-frown-o"  id="usernameuncorrect" style="display:none;" aria-hidden="true"></span>
                     </div>
                     <div class="form-left-to-w3l ">
                         <span class="fa fa-lock" aria-hidden="true"></span>
@@ -61,5 +63,54 @@
         </p>
     </footer>
 </body>
+
+<script src="http://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+    //中文处理
+    $('#username').on('input propertychange', function () {//input propertychange 当输入框里的值有变化时执行此函数
+        if ($(this).prop('cnStart')) return;//如果正在执行中文输入时，此值为true，执行return=>下面代码不执行
+        console.log('当前输入：' + $(this).val());
+        //此处执行AJAX请求判断请求的数据中有没有包含输入的这些字的古诗
+        //如果有，就将所有包含这些字的诗排列出来
+    }).on('compositionstart', function () {//compositionstart 当输入框有非直接的文字输入时触发(如：输入拼音在待选状态时)
+        $(this).prop('cnStart', true);
+        console.log('正在中文输入');//将 cnStart 变为 true，此处执行完后会跳到
+    }).on('compositionend', function () {//compositionend 当输入框有直接的文字输入时触发(如：输入拼音后完成了中文选择时)
+        $(this).prop('cnStart', false);
+        console.log('完成中文输入');
+        $("#ss").html($(this).val());
+        checkName();
+    });
+
+    //英文处理
+    $("#username").live('keyup', function () {
+        $("#ss").html($(this).val());
+        checkName();
+    });
+
+
+    function checkName(){
+        var name=$("input[name=username]").val();
+        $.ajax({
+            url:"http://localhost:8080/user/checkname",
+            type:"POST",
+            dataType:"JSON",
+            data:{
+               username:name
+            },
+            success:function(data){
+                if(data.result=="2"){
+                    $("#usernamecorrect").hide();
+                    $("#usernameuncorrect").show();
+                }else{
+                    $("#usernamecorrect").show();
+                    $("#usernameuncorrect").hide();
+                }
+            }
+        })
+
+    }
+</script>
 
 </html>
