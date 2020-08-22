@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/materialdesignicons.min.css}" rel="stylesheet">
+    <link th:href="@{/css/admin-style.min.css}" rel="stylesheet">
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/perfect-scrollbar.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin-main.min.js}"></script>
+</head>
+<body>
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+        <!--左侧导航-->
+        <aside th:replace="admin/common::menu(1)"></aside>
+        <!--End 左侧导航-->
+
+        <!--头部信息-->
+        <header th:replace="admin/common::header"></header>
+        <!--End 头部信息-->
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="card" style="background-color: #3a3d6e;border-radius: 5px">
+                            <div class="card-body clearfix">
+                                <div class="pull-right">
+                                    <p class="h6 text-white m-t-0">本月总用电量</p>
+                                    <p class="h3 text-white m-b-0" name="elecSum">102,125.00</p>
+                                </div>
+                                <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-ceiling-light fa-1-5x"></i></span> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="card" style="background-color: #4d5192;border-radius: 5px">
+                            <div class="card-body clearfix">
+                                <div class="pull-right">
+                                    <p class="h6 text-white m-t-0">宿舍总数</p>
+                                    <p class="h3 text-white m-b-0" name="unitSum">920,000</p>
+                                </div>
+                                <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fa-1-5x"></i></span> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4">
+                        <div class="card" style="background-color: #5b60ad;border-radius: 5px">
+                            <div class="card-body clearfix">
+                                <div class="pull-right">
+                                    <p class="h6 text-white m-t-0">本月电费汇总</p>
+                                    <p class="h3 text-white m-b-0" name="billSum">34,005,000</p>
+                                </div>
+                                <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-currency-cny fa-1-5x"></i></span> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 style="color: #5b60ad;font-weight: bold">各校区用电量对比</h4>
+                            </div>
+                            <div class="card-body">
+                                <!--考虑用饼状图或者柱状图 体现校区用电量对比-->
+                                <canvas class="js-chartjs-bars"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 style="color: #5b60ad;font-weight: bold">用电量均值/时间</h4>
+                            </div>
+                            <div class="card-body">
+<!--                                折线图体现宿舍均用电量和时间的关系-->
+                                <canvas class="js-chartjs-lines"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+        <!--End 页面主要内容-->
+    </div>
+</div>
+</body>
+
+</html>
