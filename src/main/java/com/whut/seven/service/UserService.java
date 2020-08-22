@@ -8,6 +8,7 @@ import com.whut.seven.entity.User;
  * @Date 2020/8/19 15:27
  */
 public interface UserService {
+
     /**
      * 用户登录
      *
@@ -17,6 +18,8 @@ public interface UserService {
      * @return 登录的用户信息
      */
     User login(String username, String password, Integer role);
+
+    User login(String username, String password);
 
     /**
      * 注册用户
@@ -33,4 +36,11 @@ public interface UserService {
      * @return 返回注册的信息
      */
     User register(User user);
+
+    /**
+     * 查找用户
+     * @param username 账号
+     * @return 返回用户信息
+     */
+    User findByName(String username);
 }

@@ -30,6 +30,11 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public User login(String username, String password) {
+        return this.userDao.findUserByUsernameAndPassword(username,password);
+    }
+
     /**
      * 注册用户
      *
@@ -54,4 +59,16 @@ public class UserServiceImpl implements UserService {
     public User register(User user) {
         return this.userDao.save(user);
     }
+
+    /**
+     * 查找用户
+     * @param username 用户名
+     * @return 返回用户信息
+     */
+    @Override
+    public User findByName(String username) {
+        return this.userDao.findUserByUsername(username);
+    }
+
+
 }

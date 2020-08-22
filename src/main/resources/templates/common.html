@@ -38,7 +38,7 @@
             <li class="nav-item nav-item-has-subnav">
               <a href="javascript:void(0)"><i class="mdi mdi-account-circle"></i><strong>用户信息</strong></a>
               <ul class="nav nav-subnav">               
-                <li> <a href="updatepassword.html"><i class="mdi mdi-account-card-details"></i><strong> 密码修改</strong></a> </li>
+                <li> <a th:href="updatepassword.html"><i class="mdi mdi-account-card-details"></i><strong> 密码修改</strong></a> </li>
                 <li> <a href="payhistory.html"><i class="mdi mdi-receipt"></i><strong> 缴费记录</strong></a> </li>
               </ul>           
             </li>
@@ -79,7 +79,7 @@
           <ul class="topbar-right">
             <li class="dropdown dropdown-profile">
                <!--显示当前登陆用户-->
-              <strong>欢迎你，</strong><span id="topbar-username"><strong>测试</strong></span>            
+              <strong>欢迎你，</strong><span id="topbar-username" th:text="${session.user.username}"><strong>测试</strong></span>
             </li>
           </ul>
           
