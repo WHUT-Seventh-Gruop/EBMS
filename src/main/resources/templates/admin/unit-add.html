@@ -15,7 +15,7 @@
 <div class="lyear-layout-web">
     <div class="lyear-layout-container">
         <!--左侧导航-->
-        <aside th:replace="admin/common::menu(3)"></aside>
+        <aside th:replace="admin/common::menu(2)"></aside>
         <!--End 左侧导航-->
 
         <!--头部信息-->
@@ -25,67 +25,67 @@
         <!--页面主要内容-->
         <main class="lyear-layout-content">
 
-            <div class="container-fluid">
+            <div class="container-fluid" >
 
 
                 <div class="row">
-                    <div class="col-lg-10 col-lg-offset-1">
+                    <div class="col-lg-10 col-lg-offset-1" >
                         <div class="card" style="margin-top: 5%;background-color: #f5f6fa">
-                            <div class="card-toolbar clearfix" style="border-radius: 10px;background-color:#FFFFFF;box-shadow: 0 0 30px #aaaaaa">
+                            <div class="card-toolbar clearfix" style="padding-top: 8%;background-color:#FFFFFF;padding-bottom: 8%;border-radius: 10px;box-shadow: 0 0 30px #aaaaaa">
 
                             <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" onsubmit="return false;">
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label col-md-offset-1"  for="billId">电费账单编号</label>
+                                        <label class="col-md-2 control-label col-md-offset-1" for="campus">校区</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="text" id="billId" name="billId" placeholder="请输入账单编号">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label col-md-offset-1" for="unit">缴费单位</label>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" id="unit" name="unit" placeholder="请输入缴费单位">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label col-md-offset-1" for="userId">用户ID</label>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" id="userId" name="userId" placeholder="请输入用户ID">
+                                            <select class="form-control" id="campus" name="campus" size="1">
+                                                <!-- <option value="">请选择校区</option>-->
+                                                <!-- <option th:each="" th:value="" th:selected=""></option>-->
+                                                <option value="">请选择校区</option>
+                                                <option value="0">余家头校区</option>
+                                                <option value="1">马房山校区</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label col-md-offset-1" for="date">起止时间</label>
+                                        <label class="col-md-2 control-label col-md-offset-1" for="buildingNo">楼号</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="text" id="date" name="date" placeholder="请输入起止时间.">
+                                            <select class="form-control" id="buildingNo" name="buildingNo" size="1">
+                                                <!--<option value="">请选择楼号</option>-->
+                                                <!--<option th:each="" th:value="" th:selected=""></option>-->
+                                                <option value="">请选择楼号</option>
+                                                <option value="1">海虹一栋</option>
+                                                <option value="2">海虹二栋</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label col-md-offset-1" for="electricityConsumption">用电量</label>
+                                        <label class="col-md-2 control-label col-md-offset-1" for="dormitoryNo">门牌号</label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" type="text" id="dormitoryNo" name="dormitoryNo" placeholder="请输入门牌号">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2 control-label col-md-offset-1" for="electricityConsumption">当月用电量</label>
                                         <div class="col-md-8">
                                             <input class="form-control" type="text" id="electricityConsumption" name="electricityConsumption" placeholder="请输入用电量">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label col-md-offset-1" for="electricCharge">电费</label>
+                                        <label class="col-md-2 control-label col-md-offset-1" for="electricCharge">预计电费</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="text" id="electricCharge" name="electricCharge" placeholder="信息状态..">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-2 control-label col-md-offset-1" for="payTime">支付时间</label>
-                                        <div class="col-md-8">
-                                            <input class="form-control" type="text" id="payTime" name="payTime" placeholder="请输入支付时间">
+                                            <input class="form-control" type="text" id="electricCharge" name="electricCharge" placeholder="程序计算所得电费">
                                         </div>
                                     </div>
                                     <div class="form-group" style="margin-top: 32px">
                                         <div class="col-xs-6" style="text-align: center">
-                                            <button class="btn btn-secondary"  type="submit">提交</button>
+                                            <button class="btn btn-secondary"  type="submit">添加</button>
                                         </div>
                                         <div class="col-xs-6" style="text-align: center">
                                             <button class="btn btn-secondary" id="returnBtn">返回</button>
                                         </div>
                                     </div>
                                 </form>
+
 
                             </div>
                         </div>
