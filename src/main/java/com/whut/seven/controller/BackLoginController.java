@@ -3,11 +3,13 @@ package com.whut.seven.controller;
 import com.whut.seven.entity.User;
 import com.whut.seven.service.BackUserService;
 import com.whut.seven.service.UserService;
+import com.whut.seven.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import sun.security.provider.MD5;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,19 +31,24 @@ public class BackLoginController {
                         HttpSession session,
                         Model model) {
         User user = backUserService.findByUsername(username);
+        if(user==null){
+            model.addAttribute("message","用户名和密码错误");
+            // 返回的是页面
+            return "/admin/login";
+        }
         if(user.getRole().equals(1)){
             model.addAttribute("message","该账号不属于管理员账号");
             // 返回的是页面
-            return "/back/login";
+            return "/admin/login";
         }
-        if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+        if (user.getUsername().equals(username) && user.getPassword().equals(MD5Util.code(password))) {
             session.setAttribute("user", user);
             // 重定向的路径
-            return "redirect:/main.html";
+            return "redirect:/admin-elec.html";
         } else {
             model.addAttribute("message","用户名和密码错误");
             // 返回的是页面
-            return "/back/login";
+            return "/admin/login";
         }
     }
 
