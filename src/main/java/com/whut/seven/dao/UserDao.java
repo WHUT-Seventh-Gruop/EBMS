@@ -1,13 +1,25 @@
 package com.whut.seven.dao;
 
 import com.whut.seven.entity.User;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+import java.util.List;
 
 /**
  * @Author Zrt
  * @Date 2020/8/19 15:25
  */
-public interface UserDao extends JpaRepository<User, String> {
+public interface UserDao extends JpaRepository<User, String> , JpaSpecificationExecutor<User> {
+
+    /**
+     * 根据用户类型查询所有用户
+     * @param role 用户类型
+     * @return 所查询的用户信息
+     */
+    List<User> findAllByRole(Integer role);
 
     /**
      * 登陆
