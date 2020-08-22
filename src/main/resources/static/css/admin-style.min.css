@@ -1700,8 +1700,8 @@ fieldset[disabled] .btn-secondary:hover {
 	color: #fff!important;
 }
 .btn-purple:hover {
-	background-color: #a282e3;
-	border-color: #a282e3;
+	background-color: #4d5192;
+	border-color: #4d5192;
 }
 .btn-purple:focus,
 .btn-purple.focus,
@@ -3364,7 +3364,7 @@ dd, dt {
         display: none;
     }
     .dropdown-skin .dropdown-menu {
-        left: -80px!important; 
+        left: -80px!important;
     }
     .nav-step .nav-step-item p {
         display: none;

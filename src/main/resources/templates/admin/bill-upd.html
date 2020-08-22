@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/materialdesignicons.min.css}" rel="stylesheet">
+    <link th:href="@{/css/admin-style.min.css}" rel="stylesheet">
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/perfect-scrollbar.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin-main.min.js}"></script>
+</head>
+<body>
+<div class="lyear-layout-web">
+    <div class="lyear-layout-container">
+        <!--左侧导航-->
+        <aside th:replace="admin/common::menu(3)"></aside>
+        <!--End 左侧导航-->
+
+        <!--头部信息-->
+        <header th:replace="admin/common::header"></header>
+        <!--End 头部信息-->
+
+        <!--页面主要内容-->
+        <main class="lyear-layout-content">
+
+            <div class="container-fluid">
+
+
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div class="card">
+                            <div class="card-toolbar clearfix">
+
+                               <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" onsubmit="return false;">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label col-md-offset-1"  for="billId">电费账单编号</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="text" id="billId" name="billId" placeholder="请输入账单编号">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label col-md-offset-1" for="unit">缴费单位</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="text" id="unit" name="unit" placeholder="请输入缴费单位">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label col-md-offset-1" for="userId">用户ID</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="text" id="userId" name="userId" placeholder="请输入用户ID">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label col-md-offset-1" for="date">起止时间</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="text" id="date" name="date" placeholder="请输入起止时间.">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label col-md-offset-1" for="electricityConsumption">用电量</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="text" id="electricityConsumption" name="electricityConsumption" placeholder="请输入用电量">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label col-md-offset-1" for="electricCharge">电费</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="text" id="electricCharge" name="electricCharge" placeholder="信息状态..">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label col-md-offset-1" for="payTime">支付时间</label>
+                                    <div class="col-md-8">
+                                        <input class="form-control" type="text" id="payTime" name="payTime" placeholder="请输入支付时间">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-top: 32px">
+                                    <div class="col-xs-6" style="text-align: center">
+                                        <button class="btn btn-secondary"  type="submit">修改</button>
+                                    </div>
+                                    <div class="col-xs-6" style="text-align: center">
+                                        <button class="btn btn-secondary" id="returnBtn">返回</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+            </div>
+
+        </main>
+        <!--End 页面主要内容-->
+    </div>
+</div>
+</body>
+
+</html>
