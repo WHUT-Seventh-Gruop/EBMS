@@ -9,10 +9,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Meta tags -->
     <!-- font-awesome icons -->
-    <link th:href="@{css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
     <!-- //font-awesome icons -->
     <!--stylesheets-->
-    <link th:href="@{css/style.css}" rel='stylesheet' type='text/css' media="all">
+    <link th:href="@{/css/style.css}" rel='stylesheet' type='text/css' media="all">
     <!--//style sheet end here-->
 </head>
 
@@ -23,7 +23,7 @@
         <div class="txt-left-side" style="border-radius: 15px 0 0 15px">
             <h2> 校园电费管理平台 </h2>
             <p>从这登陆，随时随地，方便使用</p>
-            <form action="#" method="post">
+            <form action="#" method="post" th:action="@{/back/login}">
                 <div class="form-left-to-w3l">
                     <span class="fa fa-user-o" aria-hidden="true"></span>
                     <input type="username" name="username" autocomplete="off"  placeholder="管理员账号" required="">
@@ -35,21 +35,23 @@
                 <div class="btnn">
                     <button type="submit">登陆 </button>
                 </div>
+                <div>
+                    <p style="font-size:10px;color:red" class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}">
+                        用户名和密码错误
+                    </p>
+                </div>
             </form>
 
         </div>
         <div class="img-right-side" style="border-radius: 0 15px 15px 0">
-            <img th:src="@{images/whutlogo.png}" class="img-fluid" alt="">
+            <img th:src="@{/images/whutlogo.png}" class="img-fluid" alt="">
             <h3></h3>
-            <img th:src="@{images/ad_img.jpg}" class="img-fluid" alt="">
+            <img th:src="@{/images/ad_img.jpg}" class="img-fluid" alt="">
         </div>
     </div>
 </div>
-<footer class="copyrigh-wthree">
-    <p>
-        © 2020 WHUT-Seventh Group
-    </p>
-</footer>
+<footer th:replace="admin/common :: footer"></footer>
+
 </body>
 
 </html>
