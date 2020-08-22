@@ -32,9 +32,9 @@
             </div>
             <div class="search-area-payhistory-left">
               <div class="input-daterange input-group js-datepicker" data-auto-close="false" data-date-format="yyyy-mm">
-                <input class="form-control" type="text" id="search-area-payhistory-begintime" name="example-daterange1" placeholder="从">
+                <input class="form-control" type="date" id="search-area-payhistory-begintime" name="example-daterange1" placeholder="从">
                 <span class="input-group-addon"><i class="mdi mdi-chevron-right"></i></span>
-                <input class="form-control" type="text" id="search-area-payhistory-endtime" name="example-daterange2" placeholder="至">
+                <input class="form-control" type="date" id="search-area-payhistory-endtime" name="example-daterange2" placeholder="至">
               </div>
             </div>
             <div class="search-area-payhistory-right">
@@ -58,23 +58,23 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>余家头校区</td>
-                  <td>海虹4栋</td>
-                  <td>401</td>
-                  <td>2012/12</td>
-                  <td>50度</td>
-                  <td>100元</td>
-                  <td>2012-12-01 17：53</td>
+                <tr th:each="electricity,iterStat:${allElectricity.content}">
+                  <td th:text="${iterStat.count}">1</td>
+                  <td th:text="${electricity.payUnit.campus}">嘿嘿</td>
+                  <td th:text="${electricity.payUnit.buildingNo}">海虹4栋</td>
+                  <td th:text="${electricity.payUnit.dormitoryNo}">401</td>
+                  <td th:text="${electricity.createTime}">2012/12</td>
+                  <td th:text="${electricity.electricityConsumption}">50度</td>
+                  <td th:text="${electricity.electricCharge}">100元</td>
+                  <td th:text="${electricity.payTime}">2012-12-01 17：53</td>
                 </tr>            
               </tbody>
             </table>
           </div>
 
           <div class="pagination">
-            <a href="#!"class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-left-thick"></i>上一页</a>
-            <a href="#!" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-right-thick"></i>下一页</a>
+            <a th:href="@{/electricity/findAll(page=${allElectricity.number}-1)}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-left-thick"></i>上一页</a>
+            <a th:href="@{/electricity/findAll(page=${allElectricity.number}+1)}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-right-thick"></i>下一页</a>
           </div>
       </div>    
     </main>
