@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,20 +41,19 @@ public class LoginController {
      * 用户注册
      */
     @PostMapping("/register")
-    public String register(User user, String repassword, Model model){
+    public String register(User user, String repassword, RedirectAttributes attributes){
         user.setRole(1);
             if(user.getPassword().equals(repassword)){
                 this.userService.register(user);
-                model.addAttribute("message","注册成功！");
+                attributes.addFlashAttribute("message","注册成功！");
                 //System.out.println("注册成功!");
                 //返回登录
-                return "/login";
             }else{
-                model.addAttribute("message","两次密码不一致！");
+                attributes.addFlashAttribute("message","两次密码不一致,注册失败！");
                 //System.out.println("两次密码不一致!");
                 //重定向注册
-                return "redirect:/register.html";
             }
+        return "redirect:/signupsuccess.html";
         }
 
 
