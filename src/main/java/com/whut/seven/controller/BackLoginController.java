@@ -1,5 +1,6 @@
 package com.whut.seven.controller;
 
+import com.whut.seven.entity.Result;
 import com.whut.seven.entity.User;
 import com.whut.seven.service.BackUserService;
 import com.whut.seven.service.UserService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import sun.security.provider.MD5;
 
 import javax.servlet.http.HttpSession;
@@ -24,20 +26,21 @@ public class BackLoginController {
     private UserService userService;
     @Autowired
     private BackUserService backUserService;
+@Autowired
+    HttpSession session;
 
     @PostMapping("/login")
     public String login(String username,
                         String password,
-                        HttpSession session,
                         Model model) {
         User user = backUserService.findByUsername(username);
-        if(user==null){
-            model.addAttribute("message","用户名和密码错误");
+        if (user == null) {
+            model.addAttribute("message", "用户名和密码错误");
             // 返回的是页面
             return "/admin/login";
         }
-        if(user.getRole().equals(1)){
-            model.addAttribute("message","该账号不属于管理员账号");
+        if (user.getRole().equals(1)) {
+            model.addAttribute("message", "该账号不属于管理员账号");
             // 返回的是页面
             return "/admin/login";
         }
@@ -46,32 +49,52 @@ public class BackLoginController {
             // 重定向的路径
             return "redirect:/admin-elec.html";
         } else {
-            model.addAttribute("message","用户名和密码错误");
+            model.addAttribute("message", "用户名和密码错误");
             // 返回的是页面
             return "/admin/login";
         }
     }
 
     @PostMapping("/changePassword")
-    public String changePassword(String username,
-                        String password,
-                        HttpSession session,
-                        Model model) {
-        User user = backUserService.findByUsername(username);
-        if(user.getRole().equals(1)){
-            model.addAttribute("message","该账号不属于管理员账号");
-            // 返回的是页面
-            return "/back/login";
+    @ResponseBody
+    public Result changePassword(String oldPassword,
+                                 String newPassword,
+                                 String reNewPassword,
+                                 HttpSession session,
+                                 Model model) {
+        User user = (User) session.getAttribute("user");
+        Result<String> result = new Result();
+        if (user == null) {
+            model.addAttribute("message", "请先登录！");
+            result.setSuccess(false);
+            result.setMessage("请先登录！");
         }
-        if(!user.getPassword().equals(password)){
-            model.addAttribute("message","旧密码不正确");
-            return null;
+        if (!newPassword.equals(reNewPassword)) {
+            result.setSuccess(false);
+            result.setMessage("两次输入的新密码不一致！");
+        }
+        if (user.getPassword().equals(MD5Util.code(oldPassword))) {
+            user.setPassword(MD5Util.code(newPassword));
+            backUserService.saveAdmin(user);
+            result.setSuccess(true);
+            result.setMessage("修改成功！");
         }else{
-            user.setPassword(password);
-            model.addAttribute("message","修改成功");
-            return null;
+            result.setSuccess(false);
+            result.setMessage("旧密码输入错误！");
         }
-
+        return result;
     }
+
+    /**
+     * 退出系统
+     * @param session
+     * @return
+     */
+    @RequestMapping("/loginOut")
+    public String loginOut(HttpSession session){
+        session.removeAttribute("user");
+        return "/admin/login";
+    }
+
 
 }

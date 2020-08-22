@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>校园电费缴费平台-登陆</title>
     <!-- Meta tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <!-- Meta tags -->
     <!-- font-awesome icons -->
     <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
@@ -19,27 +18,29 @@
 <body>
 <h1 class="error"></h1>
 <div class="w3layouts-two-grids">
-    <div class="mid-class" >
+    <div class="mid-class">
         <div class="txt-left-side" style="border-radius: 15px 0 0 15px">
             <h2> 校园电费管理平台 </h2>
             <p>从这登陆，随时随地，方便使用</p>
             <form action="#" method="post" th:action="@{/back/login}">
                 <div class="form-left-to-w3l">
                     <span class="fa fa-user-o" aria-hidden="true"></span>
-                    <input type="username" name="username" autocomplete="off"  placeholder="管理员账号" required="">
+                    <input type="username" name="username" autocomplete="off" placeholder="管理员账号" required="">
                 </div>
                 <div class="form-left-to-w3l ">
                     <span class="fa fa-lock" aria-hidden="true"></span>
-                    <input type="password" name="password" autocomplete="off"  placeholder="密码" required="">
+                    <input type="password" name="password" autocomplete="off" placeholder="密码" required="">
                 </div>
                 <div class="btnn">
-                    <button type="submit">登陆 </button>
+                    <button type="submit">登陆</button>
                 </div>
-                <div>
-                    <p style="font-size:10px;color:red" class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}">
-                        用户名和密码错误
-                    </p>
+
+                <div class="modal-body">
+                    <strong style="color:red" th:unless="${#strings.isEmpty(message)}"
+                            th:text="${message}">"用户名和密码错误！"</strong>
                 </div>
+
+
             </form>
 
         </div>
