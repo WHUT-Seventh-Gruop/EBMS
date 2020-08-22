@@ -32,6 +32,7 @@ public class MyConfig {
                 registry.addViewController("paysuccess.html").setViewName("paysuccess");
                 registry.addViewController("payhistory.html").setViewName("payhistory");
                 registry.addViewController("updatepassword.html").setViewName("updatepassword");
+                registry.addViewController("signupsuccess.html").setViewName("signupsuccess");
 
                 registry.addViewController("admin-bill.html").setViewName("admin/bill");
 
