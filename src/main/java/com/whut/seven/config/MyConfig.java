@@ -33,6 +33,9 @@ public class MyConfig {
                 registry.addViewController("payhistory.html").setViewName("payhistory");
                 registry.addViewController("updatepassword.html").setViewName("updatepassword");
 
+                registry.addViewController("admin-bill.html").setViewName("admin/bill");
+
+
 
             }
         };

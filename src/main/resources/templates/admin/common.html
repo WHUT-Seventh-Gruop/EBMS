@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/materialdesignicons.min.css}" rel="stylesheet">
+    <link th:href="@{/css/admin-style.min.css}" rel="stylesheet">
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/perfect-scrollbar.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin-main.min.js}"></script>
+</head>
+<body>
+
+<!--左侧导航-->
+<aside th:fragment="menu(n)" class="lyear-layout-sidebar">
+
+    <!-- logo -->
+    <div id="logo" class="sidebar-header">
+        <a href="index.html"><img th:src="@{/images/whutlogo.png}" title="Whut" alt="Whut" /></a>
+    </div>
+    <div class="lyear-layout-sidebar-scroll">
+
+        <nav class="sidebar-main">
+            <ul class="nav nav-drawer">
+                <li class="nav-item" th:classappend="${n}==1?'active':''"> <a href="index.html"><i class="mdi mdi-home"></i> 电费统计</a> </li>
+                <li class="nav-item" th:classappend="${n}==2?'active':''">
+                    <a href="javascript:void(0)"><i class="mdi mdi-palette"></i>区域信息管理</a>
+                </li>
+                <li class="nav-item" th:classappend="${n}==3?'active':''">
+                    <a href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i> 电费账单管理</a>
+                </li>
+                <li class="nav-item" th:classappend="${n}==4?'active':''">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 修改密码</a>
+                </li>
+                <li class="nav-item" th:classappend="${n}==5?'active':''">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 管理员管理</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p class="copyright">Copyright &copy; 2020. <a target="_blank" href="http://www.whut.edu.cn/">武汉理工大学</a> All rights reserved.</p>
+        </div>
+    </div>
+
+</aside>
+<!--End 左侧导航-->
+
+<!--头部信息-->
+<header th:fragment="header" class="lyear-layout-header">
+
+    <nav class="navbar navbar-default">
+        <div class="topbar">
+
+            <div class="topbar-left">
+                <div class="lyear-aside-toggler">
+                    <span class="lyear-toggler-bar"></span>
+                    <span class="lyear-toggler-bar"></span>
+                    <span class="lyear-toggler-bar"></span>
+                </div>
+                <span class="navbar-page-title" style="color:#4d5192;font-weight: bold">校园电费管理系统</span>
+            </div>
+
+            <ul class="topbar-right">
+                <li class="dropdown dropdown-profile">
+                    <a href="javascript:void(0)" data-toggle="dropdown">
+                        <i class="mdi-emoticon-cool mdi"></i>
+                        <span>管理员 <span class="caret"></span></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li> <a href="lyear_pages_edit_pwd.html"><i class="mdi mdi-lock-outline"></i> 修改密码</a> </li>
+                        <li class="divider"></li>
+                        <li> <a href="lyear_pages_login.html"><i class="mdi mdi-logout-variant"></i> 退出登录</a> </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+</header>
+<!--End 头部信息-->
+</body>
+</html>
