@@ -29,19 +29,24 @@ public class BackLoginController {
                         HttpSession session,
                         Model model) {
         User user = backUserService.findByUsername(username);
+        if(user==null){
+            model.addAttribute("message","用户名和密码错误");
+            // 返回的是页面
+            return "/admin/login";
+        }
         if(user.getRole().equals(1)){
             model.addAttribute("message","该账号不属于管理员账号");
             // 返回的是页面
-            return "/back/login";
+            return "/admin/login";
         }
         if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
             session.setAttribute("user", user);
             // 重定向的路径
-            return "redirect:/main.html";
+            return "redirect:/admin-bill.html";
         } else {
             model.addAttribute("message","用户名和密码错误");
             // 返回的是页面
-            return "/back/login";
+            return "/admin/login";
         }
     }
 
