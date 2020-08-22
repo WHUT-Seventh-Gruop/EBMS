@@ -2,6 +2,7 @@ package com.whut.seven.controller;
 
 import com.whut.seven.entity.User;
 import com.whut.seven.service.UserService;
+import com.whut.seven.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,14 +26,14 @@ public class LoginController {
     public String login(String username,
                         String password
             , HttpSession session,
-                        Model model){
-        User user = this.userService.login(username, password);
+                        Model model,RedirectAttributes attributes){
+        User user = this.userService.login(username, MD5Util.code(password));
         if(user!=null){
             session.setAttribute("user",user);
             System.out.println("登录成功！");
             return "redirect:/index.html";
         }else{
-            model.addAttribute("message","用户名和密码错误！");
+            model.addAttribute("message","用户名或密码错误！");
             return "/login.html";
         }
     }
@@ -48,6 +49,7 @@ public class LoginController {
             attributes.addFlashAttribute("message","该用户已经存在,注册失败！");
         }else {
             if (user.getPassword().equals(repassword)) {
+                user.setPassword(MD5Util.code(repassword));
                 this.userService.register(user);
                 attributes.addFlashAttribute("message", "注册成功！");
                 //System.out.println("注册成功!");
