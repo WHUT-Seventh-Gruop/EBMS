@@ -49,7 +49,7 @@ public class Electricity {
      * 当前账单对应的缴费单位
      */
     @ManyToOne
-    PayUnit payUnit;
+    private PayUnit payUnit;
 
 
     public Electricity() {
@@ -122,5 +122,13 @@ public class Electricity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public PayUnit getPayUnit() {
+        return payUnit;
+    }
+
+    public void setPayUnit(PayUnit payUnit) {
+        this.payUnit = payUnit;
     }
 }
