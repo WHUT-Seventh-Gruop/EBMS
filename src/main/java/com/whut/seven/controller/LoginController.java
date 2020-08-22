@@ -43,18 +43,23 @@ public class LoginController {
     @PostMapping("/register")
     public String register(User user, String repassword, RedirectAttributes attributes){
         user.setRole(1);
-            if(user.getPassword().equals(repassword)){
+
+        if(this.userService.findByName(user.getUsername())!=null){
+            attributes.addFlashAttribute("message","该用户已经存在,注册失败！");
+        }else {
+            if (user.getPassword().equals(repassword)) {
                 this.userService.register(user);
-                attributes.addFlashAttribute("message","注册成功！");
+                attributes.addFlashAttribute("message", "注册成功！");
                 //System.out.println("注册成功!");
                 //返回登录
-            }else{
-                attributes.addFlashAttribute("message","两次密码不一致,注册失败！");
+            } else {
+                attributes.addFlashAttribute("message", "两次密码不一致,注册失败！");
                 //System.out.println("两次密码不一致!");
                 //重定向注册
             }
-        return "redirect:/signupsuccess.html";
         }
+        return "redirect:/signupsuccess.html";
+    }
 
 
 }
