@@ -93,7 +93,7 @@
     function checkName(){
         var name=$("input[name=username]").val();
         $.ajax({
-            url:"http://localhost:8080/user/checkname",
+            url:"/user/checkName",
             type:"POST",
             dataType:"JSON",
             data:{
