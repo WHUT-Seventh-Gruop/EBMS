@@ -3,7 +3,12 @@ package com.whut.seven.controller;
 import com.whut.seven.entity.User;
 import com.whut.seven.service.BackUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +47,15 @@ public class BackAdminController {
         return null;
     }
 
+    @GetMapping("/admins")
+    public String admins(@PageableDefault(size = 5,direction = Sort.Direction.DESC) Pageable pageable,
+
+                        Model model){
+        Page<User> allAdmin = backUserService.findAllAdmin(pageable);
+        model.addAttribute("page",backUserService.findAllAdmin(pageable));
+        return "/admin/users";
+    }
+
     /**
      * 超级管理员查询所有的管理员
      * @return 所有的管理员信息
@@ -53,7 +67,8 @@ public class BackAdminController {
             attributes.addFlashAttribute("message","只有超级用户可以管理管理员!");
             return null;
         }else {
-            return backUserService.findAllAdmin();
+         //   return backUserService.findAllAdmin();
+            return null;
         }
     }
 

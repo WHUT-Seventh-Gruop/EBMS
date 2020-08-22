@@ -42,7 +42,8 @@ public class MyConfig {
                 registry.addViewController("admin-bill-upd.html").setViewName("admin/bill-upd");
                 registry.addViewController("admin-password.html").setViewName("admin/password");
                 registry.addViewController("admin-bill-add.html").setViewName("admin/bill-add");
-
+                registry.addViewController("admin-unit-add.html").setViewName("admin/unit-add");
+                registry.addViewController("admin-unit-upd.html").setViewName("admin/unit-upd");
             }
         };
         return webMvcConfigurer;

@@ -1,6 +1,8 @@
 package com.whut.seven.service;
 
 import com.whut.seven.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -31,7 +33,7 @@ public interface BackUserService {
      * 超级管理员查询所有的管理员
      * @return 所有的管理员信息
      */
-    List<User> findAllAdmin();
+    Page<User> findAllAdmin(Pageable pageable);
 
     /**
      * 保存管理员
