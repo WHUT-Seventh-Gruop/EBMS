@@ -25,18 +25,20 @@
 
         <nav class="sidebar-main">
             <ul class="nav nav-drawer">
-                <li class="nav-item" th:classappend="${n}==1?'active':''"> <a href="index.html"><i class="mdi mdi-home"></i> 电费统计</a> </li>
+                <li class="nav-item" th:classappend="${n}==1?'active':''">
+                    <a th:href="@{/admin-elec.html}" href="index.html"><i class="mdi mdi-home"></i> 电费统计</a>
+                </li>
                 <li class="nav-item" th:classappend="${n}==2?'active':''">
-                    <a href="javascript:void(0)"><i class="mdi mdi-palette"></i>区域信息管理</a>
+                    <a th:href="@{/admin-unit.html}" href="javascript:void(0)"><i class="mdi mdi-palette"></i>区域信息管理</a>
                 </li>
                 <li class="nav-item" th:classappend="${n}==3?'active':''">
-                    <a href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i> 电费账单管理</a>
+                    <a th:href="@{/admin-bill.html}" href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i> 电费账单管理</a>
                 </li>
                 <li class="nav-item" th:classappend="${n}==4?'active':''">
-                    <a href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 修改密码</a>
+                    <a th:href="@{/admin-password.html}" href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 修改密码</a>
                 </li>
                 <li class="nav-item" th:classappend="${n}==5?'active':''">
-                    <a href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 管理员管理</a>
+                    <a th:href="@{/admin-users.html}" href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 管理员管理</a>
                 </li>
             </ul>
         </nav>
