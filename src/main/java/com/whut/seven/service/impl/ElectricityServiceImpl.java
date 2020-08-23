@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,7 +19,12 @@ public class ElectricityServiceImpl implements ElectricityService {
     ElectricityDao electricityDao;
 
     @Override
-    public Page<Electricity> findAllElectricity(User user, Pageable pageable) {
-        return electricityDao.findAllByUser(user,pageable);
+    public Page<Electricity> findAllElectricityByIsPay(User user, Pageable pageable, boolean isPay) {
+        return electricityDao.findAllByUserAndIsPay(user,isPay,pageable);
+    }
+
+    @Override
+    public Page<Electricity> findAllElectricityByTimeAndIsPay(User user, Pageable pageable, Date date1, Date date2, boolean isPay) {
+        return electricityDao.findAllByUserAndPayTimeBetweenAndIsPay(user,date1,date2,isPay,pageable);
     }
 }

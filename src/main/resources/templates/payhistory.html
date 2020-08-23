@@ -5,7 +5,7 @@
 <head th:replace="common :: head(~{::title})">
   <title>校园电费缴费平台-缴费记录</title>
 </head>
-  
+
 <body>
 <div class="lyear-layout-web">
   <div class="lyear-layout-container">
@@ -19,33 +19,35 @@
     <header class="lyear-layout-header" th:replace="common :: header('用户信息-缴费记录')">
     </header>
     <!--End 头部信息-->
-    
+
     <!--页面主要内容-->
-    <main class="lyear-layout-content">     
+    <main class="lyear-layout-content">
       <div class="container-fluid">
-   
+
         <div class="card-body">
-          
+
           <div class="search-area-payhistory">
             <div class="form-group">
               <h4><strong>账单时间段</strong></h4>
             </div>
-            <div class="search-area-payhistory-left">
-              <div class="input-daterange input-group js-datepicker" data-auto-close="false" data-date-format="yyyy-mm">
-                <input class="form-control" type="date" id="search-area-payhistory-begintime" name="example-daterange1" placeholder="从">
-                <span class="input-group-addon"><i class="mdi mdi-chevron-right"></i></span>
-                <input class="form-control" type="date" id="search-area-payhistory-endtime" name="example-daterange2" placeholder="至">
+            <form th:action="@{/electricity/findAllByTime}">
+              <div class="search-area-payhistory-left">
+                <div class="input-daterange input-group js-datepicker" data-auto-close="false" data-date-format="yyyy-mm">
+                  <input class="form-control" type="date" id="search-area-payhistory-begintime" name="date1" placeholder="从">
+                  <span class="input-group-addon"><i class="mdi mdi-chevron-right"></i></span>
+                  <input class="form-control" type="date" id="search-area-payhistory-endtime" name="date2" placeholder="至">
+                </div>
               </div>
-            </div>
-            <div class="search-area-payhistory-right">
-              <button class="btn btn-dark mybtn" ><i class="mdi mdi-search-web"></i><strong>查询</strong></button>        
-          </div>
+              <div class="search-area-payhistory-right">
+                <button class="btn btn-dark mybtn" type="submit"><i class="mdi mdi-search-web"></i><strong>查询</strong></button>
+              </div>
+            </form>
 
-         <div class="vain-area"></div>
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              
-              <thead>
+            <div class="vain-area"></div>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+
+                <thead>
                 <tr>
                   <th>编号</th>
                   <th>校区</th>
@@ -56,8 +58,8 @@
                   <th>电费</th>
                   <th>付款时间</th>
                 </tr>
-              </thead>
-              <tbody>
+                </thead>
+                <tbody>
                 <tr th:each="electricity,iterStat:${allElectricity.content}">
                   <td th:text="${iterStat.count}">1</td>
                   <td th:text="${electricity.payUnit.campus}">嘿嘿</td>
@@ -67,16 +69,16 @@
                   <td th:text="${electricity.electricityConsumption}">50度</td>
                   <td th:text="${electricity.electricCharge}">100元</td>
                   <td th:text="${electricity.payTime}">2012-12-01 17：53</td>
-                </tr>            
-              </tbody>
-            </table>
-          </div>
+                </tr>
+                </tbody>
+              </table>
+            </div>
 
-          <div class="pagination">
-            <a th:href="@{/electricity/findAll(page=${allElectricity.number}-1)}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-left-thick"></i>上一页</a>
-            <a th:href="@{/electricity/findAll(page=${allElectricity.number}+1)}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-right-thick"></i>下一页</a>
+            <div class="pagination">
+              <a th:href="@{/electricity/findAll(page=${allElectricity.number}-1)}" th:unless="${allElectricity.first}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-left-thick"></i>上一页</a>
+              <a th:href="@{/electricity/findAll(page=${allElectricity.number}+1)}" th:unless="${allElectricity.last}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-right-thick"></i>下一页</a>
+            </div>
           </div>
-      </div>    
     </main>
     <!--End 页面主要内容-->
   </div>
@@ -90,5 +92,15 @@
 <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"th:src="@{js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
 <script src="js/bootstrap-datetimepicker/locale/zh-cn.js" th:src="@{/js/bootstrap-datetimepicker/locale/zh-cn.js}"></script>
 
+
+
+<!--<script>-->
+<!--  function findByTime() {-->
+
+<!--    var date1 = $("input[name=date1]").val();-->
+<!--    var date2 = $("input[name=date2]").val();-->
+
+<!--  }-->
+<!--</script>-->
 </body>
 </html>

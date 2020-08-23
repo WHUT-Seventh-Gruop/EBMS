@@ -15,6 +15,6 @@ import java.util.List;
  */
 public interface ElectricityDao extends JpaRepository<Electricity, String> {
 
-    Page<Electricity> findAllByUserAndCreateTimeBetween(User user, Date start, Date end, Pageable pageable);
-    Page<Electricity> findAllByUser(User user,Pageable pageable);
+    Page<Electricity> findAllByUserAndPayTimeBetweenAndIsPay(User user, Date start, Date end, boolean isPay,  Pageable pageable);
+    Page<Electricity> findAllByUserAndIsPay(User user, boolean isPay,Pageable pageable);
 }
