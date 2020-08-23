@@ -1,6 +1,7 @@
 package com.whut.seven.controller;
 
 import com.whut.seven.entity.Electricity;
+import com.whut.seven.entity.PayUnit;
 import com.whut.seven.entity.User;
 import com.whut.seven.service.ElectricityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +82,29 @@ public class ElectricityController {
         model.addAttribute("allElectricity",allElectricity);
 
         return "/payhistory.html";
+
+
+
+    }
+
+    @GetMapping("/findAllPaying")
+    public String findAllPaying(PayUnit payUnit,
+                                 @PageableDefault(size = 8, sort = "createTime", direction = Sort.Direction.DESC) Pageable pageable,
+                                 Model model,
+                                 HttpSession session
+    ){
+
+
+
+
+        System.out.println(payUnit.toString());
+
+        Page<Electricity> allElectricity = this.electricityService.findAllElectricity(pageable,payUnit);
+        System.out.println(allElectricity);
+
+        model.addAttribute("allElectricity",allElectricity);
+
+        return "billsearch1.html";
 
 
 

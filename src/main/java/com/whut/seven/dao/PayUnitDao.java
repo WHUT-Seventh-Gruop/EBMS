@@ -16,4 +16,6 @@ public interface PayUnitDao extends JpaRepository<PayUnit, String> {
 
     @Query(value = "select distinct p.dormitoryNo from PayUnit p where p.buildingNo = ?1 ")
     List<String> findAllDormitoriesByBuilding(String building);
+
+    PayUnit findByCampusAndBuildingNoAndDormitoryNo(String campus,String buildingNo,String dormitoryNo);
 }

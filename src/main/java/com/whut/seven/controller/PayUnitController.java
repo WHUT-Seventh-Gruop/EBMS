@@ -1,13 +1,16 @@
 package com.whut.seven.controller;
 
+
 import com.whut.seven.service.PayUnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,10 +33,12 @@ public class PayUnitController {
 
     @RequestMapping("/findAllCampus")
     @ResponseBody
-    public List<String> findAllCampus(){
+    public List<String> findAllCampus(Model model){
 
         List<String> list = payUnitService.findAllCampus();
+
         System.out.println(list);
+
         return list;
 
     }

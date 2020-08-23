@@ -1,6 +1,7 @@
 package com.whut.seven.dao;
 
 import com.whut.seven.entity.Electricity;
+import com.whut.seven.entity.PayUnit;
 import com.whut.seven.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,4 +19,5 @@ public interface ElectricityDao extends JpaRepository<Electricity, String>, JpaS
 
     Page<Electricity> findAllByUserAndPayTimeBetweenAndIsPay(User user, Date start, Date end, boolean isPay,  Pageable pageable);
     Page<Electricity> findAllByUserAndIsPay(User user, boolean isPay,Pageable pageable);
+    Page<Electricity> findAllByPayUnit(PayUnit payUnit,Pageable pageable);
 }
