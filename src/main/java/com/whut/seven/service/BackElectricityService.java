@@ -1,6 +1,8 @@
 package com.whut.seven.service;
 
 import com.whut.seven.entity.Electricity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -25,9 +27,12 @@ public interface BackElectricityService {
 
     /**
      * 查找所有电费账单
-     * @return 电费信息
+     * @param pageable 分页对象
+     * @param username 用户名
+     * @param unitId 缴费单位
+     * @return 查询到的信息
      */
-    List<Electricity> findAllElectricity();
+    Page<Electricity> findAllElectricity(Pageable pageable, String username, Long unitId);
 
     /**
      * 根据ID删除电费账单

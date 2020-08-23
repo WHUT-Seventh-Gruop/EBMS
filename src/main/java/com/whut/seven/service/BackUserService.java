@@ -47,10 +47,9 @@ public interface BackUserService {
     /**
      * 根据用户名删除用户信息
      * @param username 用户名
-     * @param role 用户的类别
      * @return 被删除的信息
      */
-    User deleteAdminByUsername(String username, Integer role);
+    void deleteAdminByUsername(String username);
 
     /**
      * 根据用户名查找用户
