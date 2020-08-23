@@ -48,12 +48,21 @@ public class BackAdminController {
     }
 
     @GetMapping("/admins")
-    public String admins(@PageableDefault(size = 5,direction = Sort.Direction.DESC) Pageable pageable,
-
+    public String admins(@PageableDefault(size = 5,direction = Sort.Direction.DESC) Pageable pageable,String username,
                         Model model){
-        Page<User> allAdmin = backUserService.findAllAdmin(pageable);
-        model.addAttribute("page",backUserService.findAllAdmin(pageable));
+        Page<User> allAdmin = backUserService.findAllAdmin(pageable,username);
+        model.addAttribute("page",allAdmin);
+        model.addAttribute("searchUsername",username);
         return "/admin/users";
+    }
+
+    @PostMapping("/admins/search")
+    public String search(@PageableDefault(size = 5,direction = Sort.Direction.DESC) Pageable pageable,String username,
+                         Model model){
+        Page<User> allAdmin = backUserService.findAllAdmin(pageable,username);
+        model.addAttribute("page",allAdmin);
+        model.addAttribute("searchUsername",username);
+        return "/admin/users :: adminList";
     }
 
     /**

@@ -35,10 +35,11 @@
                                     <div class="row m-b-10">
                                         <div class="col-lg-10">
                                             <div class="input-group">
+
+                                                <input type="text" class="form-control" name="username" placeholder="请输入管理员ID." th:placeholder="${searchUsername}">
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button">搜索</button>
+                                                    <button id="search" class="btn btn-default" type="button">搜索</button>
                                                 </span>
-                                                <input type="text" class="form-control" placeholder="请输入管理员ID.">
                                             </div>
                                         </div>
                                     </div>
@@ -48,10 +49,10 @@
                                             class="mdi mdi-plus"></i> 新增</a>
                                 </div>
                             </div>
-                            <div class="card-body">
+                            <div id="table-container" class="card-body" th:fragment="adminList">
 
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
+                                <div  class="table-responsive">
+                                    <table class="table table-bordered" >
                                         <thead>
                                         <tr>
                                             <th>序号</th>
@@ -76,14 +77,14 @@
                                     </table>
                                 </div>
                                 <ul class="pagination" th:if="${page.totalPages}>1">
-                                    <li><a th:href="@{/admin/admins(page=${page.number}-1)}"
+                                    <li><a  onclick="page(this)" th:href="@{/admin/admins(page=${page.number}-1,username=${searchUsername})}"
                                            th:unless="${page.first}">«</a></li>
                                     <!-- 中间页 -->
                                     <li th:each="pageNum:${#numbers.sequence(0, page.getTotalPages() - 1)}" >
-                                        <a th:href="@{/admin/admins(page=${pageNum})}" th:text="${pageNum + 1}" th:if="${pageNum ne page.pageable.getPageNumber()}"></a>
-                                        <a th:href="@{/admin/admins(page=${pageNum})}" th:text="${pageNum + 1}" th:if="${pageNum eq page.pageable.getPageNumber()}"  th:style="'font-weight:bold;background: #6faed9;'"></a>
+                                        <a  onclick="page(this)" th:href="@{/admin/admins(page=${pageNum},username=${searchUsername})}" th:text="${pageNum + 1}" th:if="${pageNum ne page.pageable.getPageNumber()}"></a>
+                                        <a  onclick="page(this)" th:href="@{/admin/admins(page=${pageNum},username=${searchUsername})}" th:text="${pageNum + 1}" th:if="${pageNum eq page.pageable.getPageNumber()}"  th:style="'font-weight:bold;background: #6faed9;'"></a>
                                     </li>
-                                    <li><a th:href="@{/admin/admins(page=${page.number}+1)}" th:unless="${page.last}"
+                                    <li><a  onclick="page(this)" th:href="@{/admin/admins(page=${page.number}+1,username=${searchUsername})}" th:unless="${page.last}"
                                            href="#!">»</a></li>
                                 </ul>
 
@@ -102,27 +103,25 @@
 </body>
 <script>
 
-    // // 分页信息
-    // function page(obj) {
-    //     $("input[name=page]").val($(obj).data("page"));
-    //     loaddata();
-    // }
-    //
-    // // 提交搜索
-    // $("#search").click(function () {
-    //     // $("input[name=page]").val($(obj).data("page"));
-    //     $("input[name=page]").val(0);
-    //     loaddata();
-    // });
-    //
-    // // 局部刷新搜索
-    // function  loaddata(){
-    //     $("#table-container").load("/admin/blogs/search",{
-    //         title : $("input[name=title]").val(),
-    //         typeId : $("input[name=typeId]").val(),
-    //         recommend : $("input[name=recommend]").prop('checked'),
-    //         page : $("input[name=page]").val()
-    //     });
-    // }
+    // 分页信息
+    function page(obj) {
+        $("input[name=page]").val($(obj).data("page"));
+        loaddata();
+    }
+
+    // 提交搜索
+    $("#search").click(function () {
+        // $("input[name=page]").val($(obj).data("page"));
+        $("input[name=page]").val(0);
+        loaddata();
+    });
+
+    // 局部刷新搜索
+    function  loaddata(){
+        $("#table-container").load("/admin/admins/search",{
+            username : $("input[name=username]").val(),
+
+        });
+    }
 </script>
 </html>

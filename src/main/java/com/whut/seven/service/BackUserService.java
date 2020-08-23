@@ -27,13 +27,15 @@ public interface BackUserService {
      * @param role 身份
      * @return 说添加的信息
      */
-    User addAdmin(String username, String password,Integer role);
+    User addAdmin(String username, String password, Integer role);
 
     /**
-     * 超级管理员查询所有的管理员
+     * 根据用户名进行模糊查询，如果用户名为空则全查
+     * @param pageable 分页对象
+     * @param username 用户名
      * @return 所有的管理员信息
      */
-    Page<User> findAllAdmin(Pageable pageable);
+    Page<User> findAllAdmin(Pageable pageable, String username);
 
     /**
      * 保存管理员
@@ -48,7 +50,7 @@ public interface BackUserService {
      * @param role 用户的类别
      * @return 被删除的信息
      */
-    User deleteAdminByUsername(String username,Integer role);
+    User deleteAdminByUsername(String username, Integer role);
 
     /**
      * 根据用户名查找用户

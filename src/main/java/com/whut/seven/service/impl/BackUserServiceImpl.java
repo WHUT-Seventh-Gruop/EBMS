@@ -53,18 +53,22 @@ public class BackUserServiceImpl implements BackUserService {
     }
 
     /**
-     * 超级管理员查询所有的管理员
-     *
+     * 根据用户名进行模糊查询，如果用户名为空则全查
+     * @param pageable 分页对象
+     * @param username 用户名
      * @return 所有的管理员信息
      */
     @Override
-    public Page<User> findAllAdmin(Pageable pageable) {
+    public Page<User> findAllAdmin(Pageable pageable,String username) {
         return userDao.findAll(new Specification<User>(){
             @Override
             public Predicate toPredicate(Root<User> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
                 //存放查询条件
                 List<Predicate> predicates = new ArrayList<Predicate>();
                 predicates.add(cb.equal(root.<User>get("role"), 2));
+                if(username!=null &&  !"".equals(username) ){
+                    predicates.add(cb.like(root.<String>get("username"), "%" + username + "%"));
+                }
                 cq.where(predicates.toArray(new Predicate[predicates.size()]));
                 return null;
             }
