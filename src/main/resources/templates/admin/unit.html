@@ -33,9 +33,10 @@
                             <div class="card-toolbar clearfix">
 
                                 <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" onsubmit="return false;">
+
                                     <div class="form-group">
-                                        <label class="col-xs-12" for="campus">校区</label>
-                                        <div class="col-xs-12">
+                                        <label class="col-md-2 control-label col-md-offset-1" for="campus">校区</label>
+                                        <div class="col-md-8">
                                             <select class="form-control" id="campus" name="campus" size="1">
                                                 <!-- <option value="">请选择校区</option>-->
                                                 <!-- <option th:each="" th:value="" th:selected=""></option>-->
@@ -46,8 +47,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-xs-12" for="buildingNo">楼号</label>
-                                        <div class="col-xs-12">
+                                        <label class="col-md-2 control-label col-md-offset-1" for="buildingNo">楼号</label>
+                                        <div class="col-md-8">
                                             <select class="form-control" id="buildingNo" name="buildingNo" size="1">
                                                 <!--<option value="">请选择楼号</option>-->
                                                 <!--<option th:each="" th:value="" th:selected=""></option>-->
@@ -57,7 +58,6 @@
                                             </select>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
                                         <div class="col-xs-2 col-lg-2 col-lg-offset-8">
                                             <button class="btn" style="background-color: #FFFFFF;width:80%;border-color: #4d5192;border-radius: 5px;color: #4d5192" type="submit">查询</button>
@@ -68,7 +68,7 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body" style="margin-right: 5%;margin-left: 5%">
 
 
                               <div class="table-responsive">
@@ -79,6 +79,7 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>门牌号</th>
+                                            <th>起止时间</th>
                                             <th>当月用电量</th>
                                             <th>预计电费</th>
                                             <th>操作</th>
@@ -89,6 +90,7 @@
                                         <tr>
                                             <td>1</td>
                                             <td>401</td>
+                                            <td>2020/1</td>
                                             <td>136.00</td>
                                             <td>240.50</td>
                                             <td>
