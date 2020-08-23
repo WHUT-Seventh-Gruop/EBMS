@@ -45,7 +45,7 @@
                                     </div>
                                 </form>
                                 <div class="toolbar-btn-action">
-                                    <a class="btn m-r-5" style="border-color: #4d5192;color: #4d5192" href="#!"><i
+                                    <a class="btn m-r-5" style="border-color: #4d5192;color: #4d5192" th:href="@{/admin-users-add.html}"><i
                                             class="mdi mdi-plus"></i> 新增</a>
                                 </div>
                             </div>
@@ -66,9 +66,9 @@
                                             <td th:text="${admin.username}">用户名</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a class="btn btn-xs btn-default" href="#!" title="编辑"
+                                                    <a class="btn btn-xs btn-default" th:href="@{/admin/{username}/edit(username=${admin.username})}" title="编辑"
                                                        data-toggle="tooltip"><i class="mdi mdi-pencil"></i></a>
-                                                    <a class="btn btn-xs btn-default" href="#!" title="删除"
+                                                    <a class="btn btn-xs btn-default" th:href="@{/admin/{username}/delete(username=${admin.username})}" title="删除"
                                                        data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>
                                                 </div>
                                             </td>

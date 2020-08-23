@@ -90,12 +90,10 @@ public class BackUserServiceImpl implements BackUserService {
      * 根据用户名删除用户信息
      *
      * @param username 用户名
-     * @param role     用户的类别
-     * @return 被删除的信息
      */
     @Override
-    public User deleteAdminByUsername(String username, Integer role) {
-        return userDao.deleteByUsername(username);
+    public void deleteAdminByUsername(String username) {
+         userDao.deleteById(username);
     }
 
     /**

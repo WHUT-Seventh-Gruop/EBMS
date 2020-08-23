@@ -36,7 +36,11 @@ public class MyConfig {
 
                 registry.addViewController("admin-bill.html").setViewName("admin/bill");
                 registry.addViewController("admin-unit.html").setViewName("admin/unit");
+
                 registry.addViewController("admin-users.html").setViewName("admin/users");
+                registry.addViewController("admin-users-add.html").setViewName("admin/users-add");
+                registry.addViewController("admin-users-upd.html").setViewName("admin/users-upd");
+
                 registry.addViewController("admin-elec.html").setViewName("admin/elec");
                 registry.addViewController("admin-login.html").setViewName("admin/login");
                 registry.addViewController("admin-bill-upd.html").setViewName("admin/bill-upd");
