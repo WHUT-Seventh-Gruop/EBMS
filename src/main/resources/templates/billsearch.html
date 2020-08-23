@@ -2,9 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="common :: head(~{::title})">
   <title>校园电费缴费平台-查询</title>
+  <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 </head>
   
 <body>
+
 <div class="lyear-layout-web">
   <div class="lyear-layout-container">
 
@@ -33,23 +35,17 @@
 
             
             <div class="search-area-bill-top-left">
-              <select class="form-control"  name="campus" size="1">
-                <option value="0">余家头校区</option>
-                <option value="1">南湖校区</option>
+              <select class="form-control"  id="campus" size="1" onchange="changeCampus()">
               </select>
             </div>
 
             <div class="search-area-bill-top-medium">
-              <select class="form-control" name="building_no" size="1">
-                <option value="0">海虹4栋</option>
-                <option value="1">海虹2栋</option>
+              <select class="form-control" id="buildings" size="1" onchange="changeBuildings()">
               </select>
             </div>
 
             <div class="search-area-bill-top-right">
-              <select class="form-control"  name="dormitory_no" size="1">
-                <option value="0">401</option>
-                <option value="1">402</option>
+              <select class="form-control"  id="dormitories" size="1">
               </select>
             </div>
 
@@ -118,5 +114,102 @@
 <script src="js/bootstrap-datetimepicker/moment.min.js" th:src="@{/js/bootstrap-datetimepicker/moment.min.js}"></script>
 <script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"th:src="@{js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
 <script src="js/bootstrap-datetimepicker/locale/zh-cn.js" th:src="@{/js/bootstrap-datetimepicker/locale/zh-cn.js}"></script>
+<script>
+
+  loadCampus();
+
+  function loadCampus() {
+
+    $.ajax({
+      url:"/payUnit/findAllCampus",
+      type:"GET",
+      dataType:"JSON",
+      data:{
+
+      },
+      success:function(data){
+        console.log(data[1]);
+        for(var i = 0 ; i < data.length ; i ++){
+          $("#campus").append("<option value="+data[i]+">"+data[i]+"</option>");
+          console.log(data[i])
+        }
+        changeCampus();
+
+
+      },
+      error:function () {
+        $("#message1").text("请先登录")
+        $("#myModal").show()
+      }
+    })
+
+  }
+
+  function changeCampus() {
+
+    var campus = $("#campus").val();
+    console.log(campus);
+    $("#buildings").empty();
+    $("#dormitories").empty();
+
+    $.ajax({
+      url:"/payUnit/findAllBuildingsByCampus",
+      type:"GET",
+      dataType:"JSON",
+      data:{
+        campus:campus
+      },
+      success:function(data){
+        console.log(data[1]);
+        for(var i = 0 ; i < data.length ; i ++){
+          $("#buildings").append("<option value="+data[i]+">"+data[i]+"</option>");
+          console.log(data[i])
+        }
+
+        changeBuildings();
+
+
+      },
+      error:function () {
+        $("#message1").text("请先登录")
+        $("#myModal").show()
+      }
+    })
+
+  }
+
+  function changeBuildings() {
+
+    var building = $("#buildings").val();
+    console.log(building);
+    $("#dormitories").empty();
+
+    $.ajax({
+      url:"/payUnit/findAllDormitoriesByBuilding",
+      type:"GET",
+      dataType:"JSON",
+      data:{
+        building:building
+      },
+      success:function(data){
+        console.log(data[1]);
+        for(var i = 0 ; i < data.length ; i ++){
+          $("#dormitories").append("<option value="+data[i]+">"+data[i]+"</option>");
+          console.log(data[i])
+        }
+
+
+
+      },
+      error:function () {
+        $("#message1").text("请先登录")
+        $("#myModal").show()
+      }
+    })
+
+  }
+
+
+</script>
 </body>
 </html>

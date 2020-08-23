@@ -1,5 +1,7 @@
 package com.whut.seven.entity;
 
+import org.springframework.data.jpa.repository.Query;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
