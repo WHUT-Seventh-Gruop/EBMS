@@ -47,9 +47,7 @@
                 <thead>
                 <tr>
                   <th>账单编码</th>
-                  <th>校区</th>
-                  <th>楼栋</th>
-                  <th>房号</th>
+                  <th>缴费单位</th>
                   <th>对应月份</th>
                   <th>用电量</th>
                   <th>电费</th>
@@ -59,9 +57,7 @@
                 <tbody>
                 <tr th:each="electricity,iterStat:${page.content}">
                   <td th:text="${electricity.id}">000000000000</td>
-                  <td th:text="${electricity.payUnit.campus}">南湖校区</td>
-                  <td th:text="${electricity.payUnit.buildingNo}">海虹4栋</td>
-                  <td th:text="${electricity.payUnit.dormitoryNo}">401</td>
+                  <td th:text="${electricity.payUnit.campus}+' '+${electricity.payUnit.buildingNo}+' '+${electricity.payUnit.dormitoryNo}+'室'">南湖校区</td>
                   <td th:text="${#dates.format(electricity.createTime,'yyyy-MM')}">2012/12</td>
                   <td th:text="${electricity.electricityConsumption}+'度'">50度</td>
                   <td th:text="${electricity.electricCharge}+'元'">100元</td>
