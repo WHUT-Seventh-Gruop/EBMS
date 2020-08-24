@@ -27,27 +27,27 @@
             <form action="#" method="post" >
               <div class="form-group">
                 <label >账单编号</label>
-                <input class="form-control" type="text"  value="202007081178" disabled>
+                <input class="form-control" type="text"  th:value="${electricity.id}" disabled>
               </div>
 
               <div class="form-group">
                 <label >住宅区域</label>
-                <input class="form-control" type="text"  value="余家头校区海虹4栋401" disabled>
+                <input class="form-control" type="text"  th:value="${electricity.payUnit.campus}+${electricity.payUnit.buildingNo}+${electricity.payUnit.dormitoryNo}" disabled>
               </div>
 
               <div class="form-group">
                 <label >账单时间</label>
-                <input class="form-control" type="text"  value="2020-07" disabled>
+                <input class="form-control" type="text"  th:value="${electricity.createTime}" disabled>
               </div>
 
               <div class="form-group">
                 <label >用电量</label>
-                <input class="form-control" type="text"  value="100度" disabled>
+                <input class="form-control" type="text"  th:value="${electricity.electricityConsumption}+度" disabled>
               </div>
 
               <div class="form-group">
                 <label >电费</label>
-                <input class="form-control" type="text"  value="100元" disabled>
+                <input class="form-control" type="text"  th:value="${electricity.electricCharge}+元" disabled>
               </div>
 
         
@@ -65,7 +65,7 @@
                       </div>
                       <div class="modal-footer ">
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <a type="button" class="btn btn-success"  href="paymentplatform.html">继续</a>
+                        <a type="button" class="btn btn-success"  th:href="@{/pay/electricityGetPaid(id=${electricity.id})}">继续</a>
                       </div>
                     </div>
                   </div>

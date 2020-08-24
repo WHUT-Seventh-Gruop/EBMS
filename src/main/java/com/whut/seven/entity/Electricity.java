@@ -131,4 +131,12 @@ public class Electricity {
     public void setPayUnit(PayUnit payUnit) {
         this.payUnit = payUnit;
     }
+
+    public Boolean getIsPay() {
+        return isPay;
+    }
+
+    public void setIsPay(Boolean pay) {
+        isPay = pay;
+    }
 }

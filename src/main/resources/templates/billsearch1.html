@@ -4,7 +4,7 @@
   <title>校园电费缴费平台-查询</title>
   <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 </head>
-  
+
 <body>
 
 <div class="lyear-layout-web">
@@ -21,13 +21,16 @@
     </header>
     <!--End 头部信息-->
 
-    
+
     <!--页面主要内容-->
-    <main class="lyear-layout-content">     
+    <main class="lyear-layout-content">
+
+
       <div class="container-fluid">
-   
+
         <div class="card-body">
-          
+          <input type="hidden" name="page">
+
           <div class="search-area-payhistory">
             <div class="form-group">
               <h4><strong>缴费单位/时间</strong></h4>
@@ -35,36 +38,36 @@
 
 
             <form th:action="@{/electricity/findAllPaying}">
-            <div class="search-area-bill-top-left">
-              <select class="form-control"  id="campus" name="campus" size="1" onchange="changeCampus()">
-              </select>
-            </div>
+              <div class="search-area-bill-top-left">
+                <select class="form-control"  id="campus" name="campus" size="1" onchange="changeCampus()">
+                </select>
+              </div>
 
-            <div class="search-area-bill-top-medium">
-              <select class="form-control" id="buildings" name="buildingNo" size="1" onchange="changeBuildings()">
-              </select>
-            </div>
+              <div class="search-area-bill-top-medium">
+                <select class="form-control" id="buildings" name="buildingNo" size="1" onchange="changeBuildings()">
+                </select>
+              </div>
 
-            <div class="search-area-bill-top-right">
-              <select class="form-control"  id="dormitories" name="dormitoryNo"  size="1">
-              </select>
-            </div>
+              <div class="search-area-bill-top-right">
+                <select class="form-control"  id="dormitories" name="dormitoryNo"  size="1">
+                </select>
+              </div>
 
-            <div class="search-area-bill-top-right-right">
-              <input class="form-control js-datepicker m-b-10" type="text" id="create_time" name="date" placeholder="年份-月份" value="" data-date-format="yyyy-mm">
-            </div>
+              <div class="search-area-bill-top-right-right">
+                <input class="form-control js-datepicker m-b-10" type="text" id="create_time" name="date" placeholder="年份-月份" value="" data-date-format="yyyy-mm">
+              </div>
 
-           
-            <div class="search-area-payhistory-right">
-              <button class="btn btn-dark mybtn" type="submit"><i class="mdi mdi-search-web"></i><strong>查询</strong></button>
-          </div>
+
+              <div class="search-area-payhistory-right">
+                <button class="btn btn-dark mybtn" type="submit"><i class="mdi mdi-search-web"></i><strong>查询</strong></button>
+              </div>
             </form>
 
-         <div class="vain-area"></div>
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              
-              <thead>
+            <div class="vain-area"></div>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+
+                <thead>
                 <tr>
                   <th>编号</th>
                   <th>校区</th>
@@ -76,31 +79,32 @@
                   <th>是否支付</th>
                   <th>操作</th>
                 </tr>
-              </thead>
-              <tbody>
+                </thead>
+                <tbody>
                 <tr th:each="electricity,iterStat:${allElectricity.content}">
-                  <td th:text="${iterStat.count}">1</td>
+                  <td th:text="${electricity.id}">1</td>
                   <td th:text="${electricity.payUnit.campus}">余家头校区</td>
                   <td th:text="${electricity.payUnit.buildingNo}">海虹4栋</td>
                   <td th:text="${electricity.payUnit.dormitoryNo}">401</td>
                   <td th:text="${electricity.createTime}">2012/12</td>
                   <td th:text="${electricity.electricityConsumption}">50度</td>
                   <td th:text="${electricity.electricCharge}">100元</td>
-<!--                  <td th:text="${electricity.isPay==true?'是':'否'}">是</td>-->
+                  <td th:text="${electricity.isPay==true?'是':'否'}">是</td>
                   <td>
                     <div class="btn-group">
-                      <a class="btn btn-xs btn-default" href="pay.html" title="缴费" data-toggle="tooltip"><i class="mdi  mdi-cash-usd"></i></a>
+                      <a th:unless="${electricity.isPay==true}" class="btn btn-xs btn-default" th:href="@{/electricity/findById(id=${electricity.id})}" title="缴费" data-toggle="tooltip"><i class="mdi  mdi-cash-usd"></i></a>
+                    </div>
                   </td>
-                </tr>            
-              </tbody>
-            </table>
-          </div>
+                </tr>
+                </tbody>
+              </table>
+            </div>
 
             <div class="pagination">
-              <a href="#!"class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-left-thick"></i>上一页</a>
-              <a href="#!" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-right-thick"></i>下一页</a>
+<!--              <a onclick="page(this)" th:attr="data-page=${page.number}-1" th:unless="${page.first}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-left-thick"></i>上一页</a>-->
+<!--              <a onclick="page(this)" th:attr="data-page=${page.number}+1" th:unless="${page.last}"  class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-right-thick"></i>下一页</a>-->
             </div>
-      </div>    
+          </div>
     </main>
     <!--End 页面主要内容-->
   </div>
@@ -246,6 +250,31 @@
     })
 
   }
+
+  // function page(obj) {
+  //   $("input[name=page]").val($(obj).data("page"));
+  //   loaddata();
+  //   console.log( $("input[name=page]").val());
+  // }
+  //
+  // // 提交搜索
+  // $("#search").click(function () {
+  //   $("input[name=page]").val(0);
+  //   loaddata();
+  // });
+  //
+  // // 局部刷新搜索
+  // function  loaddata(){
+  //   $("#table-container").load("/electricity/findAllPaying}",{
+  //     page : $("input[name=page]").val(),
+  //     date:$("input[name=date]").val(),
+  //     buildingNo:$("input[name=buildingNo]").val(),
+  //     dormitoryNo:$("input[name=dormitoryNo]").val(),
+  //     campus:$("input[name=campus]").val()
+  //
+  //   });
+
+  //}
 
 
 </script>

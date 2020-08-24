@@ -43,4 +43,12 @@ public class PayController {
         model.addAttribute("page",this.payService.listPaymentHistory(pageable,(User)session.getAttribute("user"),startdate,enddate));
         return "/payhistory:: payhistoryList";
     }
+
+    @GetMapping("/electricityGetPaid")
+    public String electricityGetPaid(String id,HttpSession session)
+    {
+        User user = (User)session.getAttribute("user");
+        payService.electricityGetPaid(id,user.getUsername());
+        return "/paymentplatform.html";
+    }
 }

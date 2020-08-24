@@ -75,4 +75,9 @@ public class PayServiceImpl implements PayService {
             }
         },pageable);
     }
+
+    @Override
+    public void electricityGetPaid(String id, String username) {
+        payDao.electricityGetPaid(id,username);
+    }
 }

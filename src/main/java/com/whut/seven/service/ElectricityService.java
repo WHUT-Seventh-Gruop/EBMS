@@ -15,4 +15,6 @@ public interface ElectricityService {
 
 
     Page<Electricity> findAllElectricity(Pageable pageable, PayUnit payUnit, Date date1, Date date2);
+
+    Electricity findById(String id);
 }

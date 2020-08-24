@@ -38,5 +38,10 @@ public class ElectricityServiceImpl implements ElectricityService {
         return electricityDao.findAllByPayUnitAndCreateTimeBetween(payUnit1,date1,date2,pageable);
     }
 
+    @Override
+    public Electricity findById(String id) {
+        return electricityDao.findElectricityById(id);
+    }
+
 
 }

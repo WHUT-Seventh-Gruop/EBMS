@@ -39,6 +39,14 @@ public class ElectricityController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 
+    @GetMapping("findById")
+    public String findById(String id,Model model)
+    {
+        model.addAttribute("electricity",electricityService.findById(id));
+        return "/pay.html";
+    }
+
+
     @GetMapping("/findAll")
     public String findAll(@PageableDefault(size = 8, sort = "payTime", direction = Sort.Direction.DESC) Pageable pageable,
                           Model model,
