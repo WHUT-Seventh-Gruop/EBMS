@@ -37,7 +37,7 @@
                 <li class="nav-item" th:classappend="${n}==4?'active':''">
                     <a th:href="@{/admin-password.html}" href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 修改密码</a>
                 </li>
-                <li class="nav-item" th:classappend="${n}==5?'active':''">
+                <li class="nav-item" th:classappend="${n}==5?'active':''" th:unless="${session.user.role!=3}">
                     <a th:href="@{/admin/admins}" href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 管理员管理</a>
                 </li>
             </ul>

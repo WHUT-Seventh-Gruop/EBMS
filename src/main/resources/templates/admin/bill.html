@@ -33,31 +33,25 @@
                             <div class="card-toolbar clearfix">
                                 <form class="pull-right search-bar" method="get" action="#!" role="form">
                                     <div class="input-group">
-                                        <div class="input-group-btn">
-                                            <input type="hidden" name="search_field" id="search-field" value="title">
-                                            <button class="btn btn-default dropdown-toggle" id="search-btn"
-                                                    data-toggle="dropdown" type="button" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                缴费单位 <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <!-- 可以通过缴费单位或者用户ID进行账单查询-->
-                                                <li><a tabindex="-1" href="javascript:void(0)"
-                                                       data-field="title">缴费单位</a></li>
-                                                <li><a tabindex="-1" href="javascript:void(0)" data-field="cat_name">用户ID</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <input id="searchText" type="text" class="form-control" value="" name="searchText"
+                                        <span class="input-group-btn">
+                                        <select id="index" name="index" class="btn btn-default dropdown-toggle">
+                                            <option value="0" selected> 用户ID</option>
+                                            <option value="1">校区</option>
+                                        </select>
+                                         </span>
+                                        <input id="searchText" type="text" class="form-control" value=""
+                                               name="searchText"
                                                placeholder="请输入对应信息" th:value="${searchText}">
                                         <span class="input-group-btn">
                                                     <button id="search" class="btn btn-default"
                                                             type="button">搜索</button>
                                                 </span>
                                     </div>
+
                                 </form>
                                 <div class="toolbar-btn-action">
-                                    <a class="btn m-r-5" style="border-color: #4d5192" href="#!"><i
+                                    <a class="btn m-r-5" style="border-color: #4d5192"
+                                       th:href="@{/admin-bill-add.html}"><i
                                             class="mdi mdi-plus"></i> 新增</a>
                                 </div>
                             </div>
@@ -80,11 +74,13 @@
                                         <tbody>
                                         <tr th:each="electricity,iterStat:${page.content}">
                                             <td th:text="${iterStat.count}">1</td>
-                                            <td th:text="${electricity.payUnit!=null?electricity.payUnit.campus:''}+${electricity.payUnit!=null?electricity.payUnit.buildingNo:''}+${electricity.payUnit!=null?electricity.payUnit.dormitoryNo:''}">
+                                            <td th:text="${electricity.payUnit!=null?electricity.payUnit.campus+',':''}+${electricity.payUnit!=null?electricity.payUnit.buildingNo+',':''}+${electricity.payUnit!=null?electricity.payUnit.dormitoryNo+',':''}">
                                                 余家头校区海虹4栋401
                                             </td>
-                                            <td th:text="${electricity.user.username}">15272841065</td>
-                                            <td th:text="${#dates.format(electricity.createTime, 'yyyy-MM')}">2019/11-2019/12</td>
+                                            <td th:text="${electricity.user!=null? electricity.user.username :''}">15272841065</td>
+                                            <td th:text="${#dates.format(electricity.createTime, 'yyyy-MM')}">
+                                                2019/11-2019/12
+                                            </td>
                                             <td th:text="${electricity.electricityConsumption}">136.00</td>
                                             <td th:text="${electricity.electricCharge}">240.50</td>
                                             <td th:text="${electricity.payTime!=null ? electricity.payTime : '未支付'}">
@@ -93,9 +89,13 @@
                                             <td>
                                                 <div class="btn-group">
                                                     <a class="btn btn-xs btn-default" href="#" title="编辑"
-                                                       data-toggle="tooltip"><i class="mdi mdi-pencil"></i></a>
+                                                       data-toggle="tooltip"
+                                                       th:href="@{/back/electricity/{id}/edit(id=${electricity.id})}"><i
+                                                            class="mdi mdi-pencil"></i></a>
                                                     <a class="btn btn-xs btn-default" href="#" title="删除"
-                                                       data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>
+                                                       data-toggle="tooltip"
+                                                       th:href="@{/back/electricity/{id}/delete(id=${electricity.id})}"><i
+                                                            class="mdi mdi-window-close"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -156,7 +156,7 @@
     function loaddata() {
         $("#table-container").load("/back/electricity/search", {
             searchText: $("input[name=searchText]").val(),
-            index: 0
+            index: $("#index").val()
         });
     }
 </script>

@@ -54,7 +54,7 @@ public class BackElectricityServiceImpl implements BackElectricityService {
      * @return 电费信息
      */
     @Override
-    public Page<Electricity> findAllElectricity(Pageable pageable, String username, Long unitId) {
+    public Page<Electricity> findAllElectricity(Pageable pageable, String username, String campus) {
         return electricityDao.findAll(new Specification<Electricity>() {
             @Override
             public Predicate toPredicate(Root<Electricity> root, CriteriaQuery<?> cq, CriteriaBuilder cb) {
@@ -63,8 +63,8 @@ public class BackElectricityServiceImpl implements BackElectricityService {
                 if(username!=null &&  !"".equals(username) ){
                     predicates.add(cb.like(root.<User>get("user").get("username"), "%" + username + "%"));
                 }
-                if(unitId!=null){
-                    predicates.add(cb.like(root.<PayUnit>get("payUnit").get("id"), "%" + unitId + "%"));
+                if(campus!=null){
+                    predicates.add(cb.like(root.<PayUnit>get("payUnit").get("campus"), "%" + campus + "%"));
                 }
                 cq.where(predicates.toArray(new Predicate[predicates.size()]));
                 return null;
@@ -79,7 +79,18 @@ public class BackElectricityServiceImpl implements BackElectricityService {
      * @return 电费信息
      */
     @Override
-    public Electricity deleteElectricityById(String id) {
-        return deleteElectricityById(id);
+    public void deleteElectricityById(String id) {
+        electricityDao.deleteById(id);
+    }
+
+    /**
+     * 根据ID查找账单
+     *
+     * @param id 账单id
+     * @return 查找到的信息
+     */
+    @Override
+    public Electricity findById(String id) {
+        return electricityDao.findElectricityById(id);
     }
 }
