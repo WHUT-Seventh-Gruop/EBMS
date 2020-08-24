@@ -32,12 +32,19 @@ public interface BackElectricityService {
      * @param unitId 缴费单位
      * @return 查询到的信息
      */
-    Page<Electricity> findAllElectricity(Pageable pageable, String username, Long unitId);
+    Page<Electricity> findAllElectricity(Pageable pageable, String username, String campus);
 
     /**
      * 根据ID删除电费账单
      * @param id 电费信息ID
      * @return 电费信息
      */
-    Electricity deleteElectricityById(String id);
+    void deleteElectricityById(String id);
+
+    /**
+     * 根据ID查找账单
+     * @param id 账单id
+     * @return 查找到的信息
+     */
+    Electricity findById(String id);
 }
