@@ -1,7 +1,9 @@
 package com.whut.seven.config;
 
+import com.whut.seven.interceptor.MyInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -19,6 +21,25 @@ public class MyConfig {
     @Bean
     public WebMvcConfigurer webMvcConfigurer() {
         WebMvcConfigurer webMvcConfigurer = new WebMvcConfigurer() {
+            /**
+             * Add Spring MVC lifecycle interceptors for pre- and post-processing of
+             * controller method invocations and resource handler requests.
+             * Interceptors can be registered to apply to all requests or be limited
+             * to a subset of URL patterns.
+             *
+             * @param registry
+             */
+            @Override
+            public void addInterceptors(InterceptorRegistry registry) {
+                registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**")
+                        .excludePathPatterns("/login.html","/register.html", "/", "/admin-login.html","/back/login","/login/login1","/login/register")
+                        .excludePathPatterns("/css/**")
+                        .excludePathPatterns("/images/**")
+                        .excludePathPatterns("/js/**")
+                        .excludePathPatterns("/lib/**")
+                        .excludePathPatterns("/fonts/**");
+            }
+
             @Override
             public void addViewControllers(ViewControllerRegistry registry) {
                 registry.addViewController("/").setViewName("login");
