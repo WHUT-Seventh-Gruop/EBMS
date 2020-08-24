@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Date;
 import java.util.List;
@@ -19,5 +20,7 @@ public interface ElectricityDao extends JpaRepository<Electricity, String>, JpaS
 
     Page<Electricity> findAllByUserAndPayTimeBetweenAndIsPay(User user, Date start, Date end, boolean isPay,  Pageable pageable);
     Page<Electricity> findAllByUserAndIsPay(User user, boolean isPay,Pageable pageable);
-    Page<Electricity> findAllByPayUnit(PayUnit payUnit,Pageable pageable);
+
+
+    Page<Electricity> findAllByPayUnitAndCreateTimeBetween(PayUnit payUnit, Date start, Date end, Pageable pageable);
 }

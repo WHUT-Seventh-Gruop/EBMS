@@ -50,9 +50,9 @@
               </select>
             </div>
 
-<!--            <div class="search-area-bill-top-right-right">-->
-<!--              <input class="form-control js-datepicker m-b-10" type="text" id="create_time" name="date" placeholder="年份-月份" value="" data-date-format="yyyy-mm">-->
-<!--            </div>-->
+            <div class="search-area-bill-top-right-right">
+              <input class="form-control js-datepicker m-b-10" type="text" id="create_time" name="date" placeholder="年份-月份" value="" data-date-format="yyyy-mm">
+            </div>
 
            
             <div class="search-area-payhistory-right">
@@ -203,6 +203,7 @@
     var campus = $("#campus").val();
     var building = $("#buildings").val();
     var dormitory = $("#dormitories").val();
+    var date = $("#date").val();
 
 
     $.ajax({
@@ -212,7 +213,8 @@
       data:{
         campus:campus,
         building:building,
-        dormitory:dormitory
+        dormitory:dormitory,
+        date:date
       },
       success:function(data){
         console.log(data[1]);

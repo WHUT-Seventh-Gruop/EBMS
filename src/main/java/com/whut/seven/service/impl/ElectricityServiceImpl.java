@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.List;
 
 @Service
 public class ElectricityServiceImpl implements ElectricityService {
@@ -34,9 +33,9 @@ public class ElectricityServiceImpl implements ElectricityService {
     }
 
     @Override
-    public Page<Electricity> findAllElectricity(Pageable pageable, PayUnit payUnit) {
+    public Page<Electricity> findAllElectricity(Pageable pageable, PayUnit payUnit, Date date1, Date date2) {
         PayUnit payUnit1 = payUnitDao.findByCampusAndBuildingNoAndDormitoryNo(payUnit.getCampus(),payUnit.getBuildingNo(),payUnit.getDormitoryNo());
-        return electricityDao.findAllByPayUnit(payUnit1,pageable);
+        return electricityDao.findAllByPayUnitAndCreateTimeBetween(payUnit1,date1,date2,pageable);
     }
 
 
