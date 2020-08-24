@@ -6,6 +6,7 @@ import com.whut.seven.entity.User;
 import com.whut.seven.service.BackElectricityService;
 import com.whut.seven.service.BackUnitService;
 import com.whut.seven.service.BackUserService;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,10 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
@@ -25,6 +23,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -216,6 +215,37 @@ public class BackElectricityController {
 
         model.addAttribute("message","修改成功!");
         return "/admin/bill-upd";
+    }
+    @GetMapping("/sum")
+    @ResponseBody
+    public String calSumElectricityConsumptionThisMonth(Model model){
+        Double aDouble = backElectricityService.calSumElectricityConsumptionThisMonth();
+        model.addAttribute("sum",aDouble);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("sum",aDouble);
+        return jsonObject.toString();
+    }
+
+    @GetMapping("/elec")
+    public String statisticData(Model model){
+        Double electricityConsumptionSum = backElectricityService.calSumElectricityConsumptionThisMonth();
+        model.addAttribute("electricityConsumptionSum",electricityConsumptionSum);
+        Long unitCount = backUnitService.countUnit();
+        model.addAttribute("unitCount",unitCount);
+        Double sumElectricityChargeThisMonth = backElectricityService.calSumElectricityChargeThisMonth();
+        model.addAttribute("sumElectricityChargeThisMonth",sumElectricityChargeThisMonth);
+        Map<Long, Double> electricityConsumptionGroupByUnit = backElectricityService.findElectricityConsumptionGroupByUnit();
+        System.out.println(electricityConsumptionGroupByUnit);
+        return "/admin/elec";
+    }
+
+    @RequestMapping("/tableData")
+    @ResponseBody
+    public Map<Long, Double> tableData(){
+        JSONObject jsonObject = new JSONObject();
+        Map<Long, Double> electricityConsumptionGroupByUnit = backElectricityService.findElectricityConsumptionGroupByUnit();
+        jsonObject.put("electricityConsumptionGroupByUnit",electricityConsumptionGroupByUnit);
+        return electricityConsumptionGroupByUnit;
     }
 
 }

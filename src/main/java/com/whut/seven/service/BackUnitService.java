@@ -21,4 +21,10 @@ public interface BackUnitService {
      * @return
      */
     List<PayUnit> findAllUnit();
+
+    /**
+     * 计算所有的单位数量
+     * @return 数量
+     */
+    Long countUnit();
 }

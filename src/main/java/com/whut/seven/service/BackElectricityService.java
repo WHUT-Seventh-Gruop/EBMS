@@ -4,7 +4,7 @@ import com.whut.seven.entity.Electricity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * @Author Zrt
@@ -47,4 +47,20 @@ public interface BackElectricityService {
      * @return 查找到的信息
      */
     Electricity findById(String id);
+
+    /**
+     * 计算本月的电费
+     * @return 电费的值
+     */
+    Double calSumElectricityConsumptionThisMonth();
+
+    /**
+     * 计算本月的所有电费
+     * @return 本月电费总和
+     */
+    Double calSumElectricityChargeThisMonth();
+
+
+    Map<Long,Double> findElectricityConsumptionGroupByUnit();
+
 }

@@ -47,7 +47,7 @@ public class BackLoginController {
         if (user.getUsername().equals(username) && user.getPassword().equals(MD5Util.code(password))) {
             session.setAttribute("user", user);
             // 重定向的路径
-            return "redirect:/admin-elec.html";
+            return "redirect:/back/electricity/elec";
         } else {
             model.addAttribute("message", "用户名和密码错误");
             // 返回的是页面

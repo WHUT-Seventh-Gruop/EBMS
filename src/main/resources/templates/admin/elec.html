@@ -33,7 +33,7 @@
                             <div class="card-body clearfix">
                                 <div class="pull-right">
                                     <p class="h6 text-white m-t-0">本月总用电量</p>
-                                    <p class="h3 text-white m-b-0" name="elecSum">102,125.00</p>
+                                    <p class="h3 text-white m-b-0" name="elecSum" th:text="${electricityConsumptionSum}">102,125.00</p>
                                 </div>
                                 <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-ceiling-light fa-1-5x"></i></span> </div>
                             </div>
@@ -45,7 +45,7 @@
                             <div class="card-body clearfix">
                                 <div class="pull-right">
                                     <p class="h6 text-white m-t-0">宿舍总数</p>
-                                    <p class="h3 text-white m-b-0" name="unitSum">920,000</p>
+                                    <p class="h3 text-white m-b-0" name="unitSum" th:text="${unitCount}">920,000</p>
                                 </div>
                                 <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account fa-1-5x"></i></span> </div>
                             </div>
@@ -57,7 +57,7 @@
                             <div class="card-body clearfix">
                                 <div class="pull-right">
                                     <p class="h6 text-white m-t-0">本月电费汇总</p>
-                                    <p class="h3 text-white m-b-0" name="billSum">34,005,000</p>
+                                    <p class="h3 text-white m-b-0" name="billSum" th:text="${sumElectricityChargeThisMonth}">34,005,000</p>
                                 </div>
                                 <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-currency-cny fa-1-5x"></i></span> </div>
                             </div>
@@ -67,7 +67,7 @@
 
                 <div class="row">
 
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
                         <div class="card">
                             <div class="card-header">
                                 <h4 style="color: #5b60ad;font-weight: bold">各校区用电量对比</h4>
@@ -79,17 +79,17 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 style="color: #5b60ad;font-weight: bold">用电量均值/时间</h4>
-                            </div>
-                            <div class="card-body">
-<!--                                折线图体现宿舍均用电量和时间的关系-->
-                                <canvas class="js-chartjs-lines"></canvas>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="col-lg-6">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header">-->
+<!--                                <h4 style="color: #5b60ad;font-weight: bold">用电量均值/时间</h4>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--&lt;!&ndash;折线图体现宿舍均用电量和时间的关系&ndash;&gt;-->
+<!--                                <canvas class="js-chartjs-lines"></canvas>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
                 </div>
             </div>
@@ -99,5 +99,54 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" th:src="@{/js/Chart.js}"></script>
 
+<script type="text/javascript">
+    let electricityConsumptionGroupByUnit;
+    $.ajax({
+        xhrFields: {
+            withCredentials: true
+        },
+        url: "/back/electricity/tableData",
+        type: 'get',
+        success: function (result) {
+           console.log(result);
+           electricityConsumptionGroupByUnit=result;
+            console.log(electricityConsumptionGroupByUnit);
+            label1=[];
+            data1=[];
+            for(const key in electricityConsumptionGroupByUnit){
+                label1.push(key);
+                data1.push(electricityConsumptionGroupByUnit[key]);
+            }
+            console.log(label1);
+            console.log(data1);
+            $(document).ready(function(e) {
+                var $dashChartBarsCnt  = jQuery( '.js-chartjs-bars' )[0].getContext( '2d' );
+
+                var $dashChartBarsData = {
+                    labels: label1,
+                    datasets: [
+                        {
+                            label: '校区编号',
+                            borderWidth: 1,
+                            borderColor: 'rgba(0,0,0,0)',
+                            backgroundColor: 'rgba(51,202,185,0.5)',
+                            hoverBackgroundColor: "rgba(51,202,185,0.7)",
+                            hoverBorderColor: "rgba(0,0,0,0)",
+                            data: data1
+                        }
+                    ]
+                };
+
+                new Chart($dashChartBarsCnt, {
+                    type: 'bar',
+                    data: $dashChartBarsData
+                });
+
+            });
+        }
+    });
+
+</script>
 </html>

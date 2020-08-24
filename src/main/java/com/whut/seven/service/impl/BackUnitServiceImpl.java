@@ -37,4 +37,14 @@ public class BackUnitServiceImpl implements BackUnitService {
     public List<PayUnit> findAllUnit() {
         return backUnitDao.findAll();
     }
+
+    /**
+     * 计算所有的单位数量
+     *
+     * @return 数量
+     */
+    @Override
+    public Long countUnit() {
+        return backUnitDao.count();
+    }
 }
