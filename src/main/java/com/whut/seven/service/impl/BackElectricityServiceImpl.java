@@ -16,7 +16,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author Zrt
@@ -92,5 +94,44 @@ public class BackElectricityServiceImpl implements BackElectricityService {
     @Override
     public Electricity findById(String id) {
         return electricityDao.findElectricityById(id);
+    }
+
+    /**
+     * 计算本月的电费
+     *
+     * @return 电费的值
+     */
+    @Override
+    public Double calSumElectricityConsumptionThisMonth() {
+        double v = electricityDao.calSumElectricityConsumption();
+        return v;
+    }
+
+    /**
+     * 计算本月的所有电费
+     *
+     * @return 本月电费总和
+     */
+    @Override
+    public Double calSumElectricityChargeThisMonth() {
+        return electricityDao.calSumElectricityCharge();
+    }
+
+    @Override
+    public Map<Long,Double> findElectricityConsumptionGroupByUnit() {
+        List<Electricity> all = electricityDao.findAll();
+        Map<Long,Double> result = new HashMap();
+        for (Electricity electricity : all) {
+            PayUnit payUnit = electricity.getPayUnit();
+            if(result.containsKey(payUnit.getId())){
+                Double aDouble = result.get(payUnit.getId());
+                double v = electricity.getElectricCharge().doubleValue();
+                double v1 = aDouble + v;
+                result.put(payUnit.getId(),v1);
+            }else{
+                result.put(payUnit.getId(),electricity.getElectricityConsumption().doubleValue());
+            }
+        }
+        return result;
     }
 }

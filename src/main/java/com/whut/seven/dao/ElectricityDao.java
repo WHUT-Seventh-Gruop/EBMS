@@ -25,4 +25,21 @@ public interface ElectricityDao extends JpaRepository<Electricity, String>, JpaS
     Page<Electricity> findAllByPayUnitAndCreateTimeBetween(PayUnit payUnit, Date start, Date end, Pageable pageable);
 
     Electricity findElectricityById(String id);
+
+    /**
+     * 计算所有的电力消耗
+     * SELECT * FROM 表名 WHERE DATE_FORMAT( 时间字段名, ‘%Y%m' ) = DATE_FORMAT( CURDATE( ) , ‘%Y%m' )
+     * @return 本月的所有电力消耗
+     */
+    @Query(nativeQuery = true , value = "select sum(e.electricity_consumption) from t_electricity e where DATE_FORMAT(e.create_time, '%Y%m' )  = DATE_FORMAT( CURDATE( ) , '%Y%m' )")
+    double calSumElectricityConsumption();
+
+    /**
+     * 计算本月的所有电费
+     * @return 本月的所有电费
+     */
+    @Query(nativeQuery = true , value = "select sum(e.electric_charge) from t_electricity e where DATE_FORMAT(e.create_time, '%Y%m' )  = DATE_FORMAT( CURDATE( ) , '%Y%m' )")
+    double calSumElectricityCharge();
+
+
 }

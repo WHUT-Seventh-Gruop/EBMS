@@ -1,7 +1,9 @@
 package com.whut.seven.controller;
 
+import com.whut.seven.entity.Result;
 import com.whut.seven.entity.User;
 import com.whut.seven.service.UserService;
+import com.whut.seven.util.MD5Util;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,7 @@ public class UserController {
     /**
      * 修改自己密码
      */
-    @PostMapping("/updPassword")
+    /*@PostMapping("/updPassword")
     public String updPassword(String username,
                               HttpSession session,
                               String oldpassword,
@@ -54,7 +56,46 @@ public class UserController {
           }
 
 
+    }*/
+
+    @PostMapping("/updPassword")
+    @ResponseBody
+    public Result updPassword(HttpSession session,
+                              String oldpassword,
+                              String newpassword,
+                              String repassword,
+                              Model model) {
+        User user=(User)session.getAttribute("user");
+        Result<String> result=new Result();
+            if (user.getPassword().equals(MD5Util.code(oldpassword))) {
+                if (oldpassword.equals(newpassword)) {
+                    model.addAttribute("message", "旧密码和新密码不能一样！");
+                    result.setSuccess(false);
+                    result.setMessage("旧密码和新密码不能一样!");
+                } else {
+                    if (newpassword.equals(repassword)) {
+                        user.setPassword(MD5Util.code(newpassword));
+                        this.userService.changePassword(user);
+                        model.addAttribute("message", "修改密码成功！");
+                        result.setSuccess(true);
+                        result.setMessage("密码修改成功！");
+                    } else {
+                        model.addAttribute("message", "两次新密码不一致！");
+
+                        result.setSuccess(false);
+                        result.setMessage("两次新密码不一致！");
+                    }
+                }
+            } else {
+                model.addAttribute("message", "旧密码错误！");
+                result.setSuccess(false);
+                result.setMessage("旧密码错误！");
+            }
+        return result;
     }
+
+
+
 
     @RequestMapping("/checkName")
     @ResponseBody
@@ -69,4 +110,6 @@ public class UserController {
 
         return jsonObject.toString();
     }
+
+
 }

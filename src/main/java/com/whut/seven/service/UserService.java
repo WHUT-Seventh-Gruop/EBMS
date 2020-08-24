@@ -43,4 +43,7 @@ public interface UserService {
      * @return 返回用户信息
      */
     User findByName(String username);
+
+
+    void changePassword(User user);
 }

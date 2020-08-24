@@ -70,5 +70,8 @@ public class UserServiceImpl implements UserService {
         return this.userDao.findUserByUsername(username);
     }
 
-
+    @Override
+    public void changePassword(User user) {
+        this.userDao.save(user);
+    }
 }
