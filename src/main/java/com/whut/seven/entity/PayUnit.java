@@ -1,8 +1,9 @@
 package com.whut.seven.entity;
 
-import org.springframework.data.jpa.repository.Query;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class PayUnit {
      * 缴费单位ID 主键 自增
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
      * 校区
@@ -38,6 +39,10 @@ public class PayUnit {
      */
     @OneToMany(mappedBy = "payUnit")
     private List<Electricity> electricityList = new ArrayList<>();
+    
+    
+    
+    
 
     public List<Electricity> getElectricityList() {
         return electricityList;

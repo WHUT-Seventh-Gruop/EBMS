@@ -10,6 +10,7 @@
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/perfect-scrollbar.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/admin-main.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery.js}"></script>
 </head>
 <body>
 <div class="lyear-layout-web">
@@ -33,55 +34,56 @@
                         <div class="card" style="margin-top: 5%;background-color: #f5f6fa">
                             <div class="card-toolbar clearfix" style="padding-top: 8%;padding-bottom: 8%;background-color:#FFFFFF;border-radius: 10px;box-shadow: 0 0 30px #aaaaaa">
 
-                                <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data" onsubmit="return false;">
+                                <form class="ui form" th:action="@{/admin/PayUnit/updateUnit}" method="post" enctype="multipart/form-data" >
 
                                     <div class="form-group">
                                         <label class="col-md-2 control-label col-md-offset-1" for="id">宿舍id</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="text" id="id" name="id" placeholder="4401" readonly>
+                                            <input class="form-control" type="text" id="id" name="id"th:value="${payUnit.id}" th:placeholder="${payUnit.id}" readonly>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label col-md-offset-1" for="campus">校区</label>
                                         <div class="col-md-8">
-                                            <select class="form-control" id="campus" name="campus" size="1">
+                                            <select class="form-control" id="campus" th:value="${payUnit.campus}"name="campus" size="1">
                                                 <!-- <option value="">请选择校区</option>-->
                                                 <!-- <option th:each="" th:value="" th:selected=""></option>-->
-                                                <option value="">请选择校区</option>
-                                                <option value="0">余家头校区</option>
-                                                <option value="1">马房山校区</option>
+                                                <option th:value="${payUnit.campus}">请选择校区</option>
+                                                <option th:each="campus:${campus}" th:value="${campus}"  th:text="${campus}"></option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label col-md-offset-1" for="buildingNo">楼号</label>
                                         <div class="col-md-8">
-                                            <select class="form-control" id="buildingNo" name="buildingNo" size="1">
+                                            <select class="form-control" id="buildingNo"th:value="${payUnit.buildingNo}"  name="buildingNo" size="1">
                                                 <!--<option value="">请选择楼号</option>-->
                                                 <!--<option th:each="" th:value="" th:selected=""></option>-->
-                                                <option value="">请选择楼号</option>
-                                                <option value="1">海虹一栋</option>
-                                                <option value="2">海虹二栋</option>
+                                                <option th:value="${payUnit.buildingNo}">请选择楼号</option>
+                                                <option th:each="building_no:${building_no}" th:value="${building_no}"  th:text="${building_no}"></option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-2 control-label col-md-offset-1" for="dormitoryNo">门牌号</label>
                                         <div class="col-md-8">
-                                            <input class="form-control" type="text" id="dormitoryNo" name="dormitoryNo" placeholder="请输入门牌号">
+                                            <input class="form-control" type="text" id="dormitoryNo" name="dormitoryNo" th:value="${payUnit.dormitoryNo}" th:placeholder="${payUnit.dormitoryNo}">
                                         </div>
                                     </div>
+                                    <div class="ui error message"></div>
                                     <div class="form-group" style="margin-top: 32px">
                                         <div class="col-xs-6" style="text-align: center">
                                             <button class="btn btn-secondary"  type="submit">修改</button>
                                         </div>
-                                        <div class="col-xs-6" style="text-align: center">
-                                            <button class="btn btn-secondary" id="returnBtn">返回</button>
-                                        </div>
                                     </div>
                                 </form>
-
-
+                                 <form th:action="@{/admin/PayUnit}">
+                                     <div class="form-group" style="margin-top: 32px">
+                                         <div class="col-xs-6" style="text-align: center">
+                                             <button class="btn btn-secondary" id="returnBtn" onclick="window.history.go(-1)">返回</button>
+                                         </div>
+                                     </div>
+                                 </form>
                             </div>
                         </div>
                     </div>
@@ -93,6 +95,41 @@
         <!--End 页面主要内容-->
     </div>
 </div>
+<script>
+    $('.ui.form').form({
+
+        fields : {
+            id : {
+                identifier: 'id',
+                rules: [{
+                    type : 'empty',
+                    prompt: '请输入区域id'
+                }]
+            },
+            campus : {
+                identifier: 'campus',
+                rules: [{
+                    type : 'empty',
+                    prompt: '请输入校区'
+                }]
+            },
+            buildingNo : {
+                identifier: 'buildingNo',
+                rules: [{
+                    type : 'empty',
+                    prompt: '请输入楼号'
+                }]
+            },
+            dormitoryNo : {
+                identifier: 'dormitoryNo',
+                rules: [{
+                    type : 'empty',
+                    prompt: '请输入门牌号'
+                }]
+            }
+        }
+    });
+</script>
 </body>
 
 </html>
