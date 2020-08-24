@@ -25,28 +25,25 @@
       <div class="container-fluid">
 
         <div class="card-body">
-
+          <input type="hidden" name="page">
           <div class="search-area-payhistory">
             <div class="form-group">
               <h4><strong>账单时间段</strong></h4>
             </div>
-            <form th:action="@{/electricity/findAllByTime}">
-              <div class="search-area-payhistory-left">
-                <div class="input-daterange input-group js-datepicker" data-auto-close="false" data-date-format="yyyy-mm">
-                  <input class="form-control" type="date" id="search-area-payhistory-begintime" name="date1" placeholder="从">
-                  <span class="input-group-addon"><i class="mdi mdi-chevron-right"></i></span>
-                  <input class="form-control" type="date" id="search-area-payhistory-endtime" name="date2" placeholder="至">
+                <div class="search-area-payhistory-left">
+                  <div class="input-daterange input-group js-datepicker" data-auto-close="false" data-date-format="yyyy-mm">
+                    <input class="form-control" type="date" id="search-area-payhistory-begintime" name="date1" placeholder="从">
+                    <span class="input-group-addon"><i class="mdi mdi-chevron-right"></i></span>
+                    <input class="form-control" type="date" id="search-area-payhistory-endtime" name="date2" placeholder="至">
+                  </div>
                 </div>
-              </div>
-              <div class="search-area-payhistory-right">
-                <button class="btn btn-dark mybtn" type="submit"><i class="mdi mdi-search-web"></i><strong>查询</strong></button>
-              </div>
-            </form>
+                <div class="search-area-payhistory-right">
+                  <button class="btn btn-dark mybtn" id="search"><i class="mdi mdi-search-web"></i><strong>查询</strong></button>
+                </div>
 
             <div class="vain-area"></div>
-            <div class="table-responsive">
-              <table class="table table-bordered">
-
+            <div class="table-responsive"  id="table-container" th:fragment="payhistoryList">
+              <table class="table table-bordered" >
                 <thead>
                 <tr>
                   <th>编号</th>
@@ -60,7 +57,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="electricity,iterStat:${allElectricity.content}">
+                <tr th:each="electricity,iterStat:${page.content}">
                   <td th:text="${iterStat.count}">1</td>
                   <td th:text="${electricity.payUnit.campus}">嘿嘿</td>
                   <td th:text="${electricity.payUnit.buildingNo}">海虹4栋</td>
@@ -71,12 +68,13 @@
                   <td th:text="${electricity.payTime}">2012-12-01 17：53</td>
                 </tr>
                 </tbody>
-              </table>
-            </div>
 
-            <div class="pagination">
-              <a th:href="@{/electricity/findAll(page=${allElectricity.number}-1)}" th:unless="${allElectricity.first}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-left-thick"></i>上一页</a>
-              <a th:href="@{/electricity/findAll(page=${allElectricity.number}+1)}" th:unless="${allElectricity.last}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-right-thick"></i>下一页</a>
+              </table>
+              <div class="pagination">
+                <a onclick="page(this)" th:attr="data-page=${page.number}-1" th:unless="${page.first}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-left-thick"></i>上一页</a>
+                <a onclick="page(this)" th:attr="data-page=${page.number}+1" th:unless="${page.last}"  class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-right-thick"></i>下一页</a>
+              </div>
+
             </div>
           </div>
     </main>
@@ -84,23 +82,38 @@
   </div>
 </div>
 
-<!--日期选择插件-->
-<script src="../static/js/bootstrap-datepicker/bootstrap-datepicker.min.js" th:src="@{js/bootstrap-datepicker/bootstrap-datepicker.min.js}"></script>
-<script src="../static/js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js" th:src="@{/js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js}"></script>
-<!--时间选择插件-->
-<script src="js/bootstrap-datetimepicker/moment.min.js" th:src="@{/js/bootstrap-datetimepicker/moment.min.js}"></script>
-<script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"th:src="@{js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
-<script src="js/bootstrap-datetimepicker/locale/zh-cn.js" th:src="@{/js/bootstrap-datetimepicker/locale/zh-cn.js}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<script>
+
+  // 分页信息
+  function page(obj) {
+    $("input[name=page]").val($(obj).data("page"));
+    loaddata();
+    console.log( $("input[name=page]").val());
+  }
+
+  // 提交搜索
+  $("#search").click(function () {
+    $("input[name=page]").val(0);
+    loaddata();
+  });
+
+  // 局部刷新搜索
+  function  loaddata(){
+    $("#table-container").load("/pay/payhistorys/search",{
+      page : $("input[name=page]").val(),
+      startdate:$("input[name=date1]").val(),
+      enddate:$("input[name=date2]").val(),
+    });
+
+  }
 
 
 
-<!--<script>-->
-<!--  function findByTime() {-->
 
-<!--    var date1 = $("input[name=date1]").val();-->
-<!--    var date2 = $("input[name=date2]").val();-->
-
-<!--  }-->
-<!--</script>-->
+</script>
 </body>
 </html>
