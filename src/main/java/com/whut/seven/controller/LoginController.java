@@ -63,5 +63,14 @@ public class LoginController {
         return "redirect:/signupsuccess.html";
     }
 
+    /**
+     * 用户注销
+     */
+    @RequestMapping("/loginOut")
+    public String loginOut(HttpSession session){
+        session.removeAttribute("user");
+        return "redirect:/login.html";
+    }
+
 
 }

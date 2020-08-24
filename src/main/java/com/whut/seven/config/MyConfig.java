@@ -32,7 +32,7 @@ public class MyConfig {
             @Override
             public void addInterceptors(InterceptorRegistry registry) {
                 registry.addInterceptor(new MyInterceptor()).addPathPatterns("/**")
-                        .excludePathPatterns("/login.html","/register.html", "/", "/admin-login.html","/back/login","/login/login1","/login/register")
+                        .excludePathPatterns("/login.html","/register.html", "/", "/admin-login.html","/back/login","/login/login1","/login/register","/user/checkName")
                         .excludePathPatterns("/css/**")
                         .excludePathPatterns("/images/**")
                         .excludePathPatterns("/js/**")
