@@ -80,15 +80,16 @@ public class BackElectricityController {
     @PostMapping("/add")
     public String addElectricity(String unitId, String userId, String date,String payTime, String electricityConsumption, String electricCharge,Model model)  {
         Electricity electricity = new Electricity();
-        User byUsername = backUserService.findByUsername(userId);
-        if(byUsername==null){
-            model.addAttribute("message","用户ID不存在!");
-            return "/admin/bill-add";
-        }
         PayUnit unitById = backUnitService.findUnitById(unitId);
         if(unitById==null){
             model.addAttribute("message","支付单位不存在!");
             return "/admin/bill-add";
+        }
+        User byUsername = backUserService.findByUsername(userId);
+        if(byUsername==null){
+            electricity.setUser(null);
+        }else{
+            electricity.setUser(byUsername);
         }
         if(electricCharge==null){
             model.addAttribute("message","用电量为空!");
@@ -130,7 +131,6 @@ public class BackElectricityController {
         }
         electricity.setId(UUID.randomUUID().toString());
         electricity.setPayUnit(unitById);
-        electricity.setUser(byUsername);
         electricity.setElectricityConsumption(new BigDecimal(electricityConsumption));
         electricity.setElectricCharge(new BigDecimal(electricCharge));
         backElectricityService.addElectricity(electricity);

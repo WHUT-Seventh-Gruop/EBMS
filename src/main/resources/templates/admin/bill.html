@@ -48,29 +48,6 @@
                                                 </span>
                                     </div>
 
-                                    <!--                                    <div class="input-group">-->
-                                    <!--                                        <div class="input-group-btn">-->
-                                    <!--                                            <input type="hidden" name="search_field" id="search-field" value="title">-->
-                                    <!--                                            <button class="btn btn-default dropdown-toggle" id="search-btn"-->
-                                    <!--                                                    data-toggle="dropdown" type="button" aria-haspopup="true"-->
-                                    <!--                                                    aria-expanded="false">-->
-                                    <!--                                                缴费单位 <span class="caret"></span>-->
-                                    <!--                                            </button>-->
-                                    <!--                                            <ul class="dropdown-menu">-->
-                                    <!--                                                &lt;!&ndash; 可以通过缴费单位或者用户ID进行账单查询&ndash;&gt;-->
-                                    <!--                                                <li><a tabindex="-1" href="javascript:void(0)"-->
-                                    <!--                                                       data-field="title">用户ID</a></li>-->
-                                    <!--                                                <li><a tabindex="-1" href="javascript:void(0)" data-field="cat_name">缴费单位</a>-->
-                                    <!--                                                </li>-->
-                                    <!--                                            </ul>-->
-                                    <!--                                        </div>-->
-                                    <!--                                        <input id="searchText" type="text" class="form-control" value="" name="searchText"-->
-                                    <!--                                               placeholder="请输入对应信息" th:value="${searchText}">-->
-                                    <!--                                        <span class="input-group-btn">-->
-                                    <!--                                                    <button id="search" class="btn btn-default"-->
-                                    <!--                                                            type="button">搜索</button>-->
-                                    <!--                                                </span>-->
-                                    <!--                                    </div>-->
                                 </form>
                                 <div class="toolbar-btn-action">
                                     <a class="btn m-r-5" style="border-color: #4d5192"
@@ -100,7 +77,7 @@
                                             <td th:text="${electricity.payUnit!=null?electricity.payUnit.campus+',':''}+${electricity.payUnit!=null?electricity.payUnit.buildingNo+',':''}+${electricity.payUnit!=null?electricity.payUnit.dormitoryNo+',':''}">
                                                 余家头校区海虹4栋401
                                             </td>
-                                            <td th:text="${electricity.user.username}">15272841065</td>
+                                            <td th:text="${electricity.user!=null? electricity.user.username :''}">15272841065</td>
                                             <td th:text="${#dates.format(electricity.createTime, 'yyyy-MM')}">
                                                 2019/11-2019/12
                                             </td>
