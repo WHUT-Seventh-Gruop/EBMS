@@ -20,4 +20,6 @@ public interface ElectricityDao extends JpaRepository<Electricity, String>, JpaS
     Page<Electricity> findAllByUserAndPayTimeBetweenAndIsPay(User user, Date start, Date end, boolean isPay,  Pageable pageable);
     Page<Electricity> findAllByUserAndIsPay(User user, boolean isPay,Pageable pageable);
     Page<Electricity> findAllByPayUnit(PayUnit payUnit,Pageable pageable);
+
+    Electricity findElectricityById(String id);
 }
