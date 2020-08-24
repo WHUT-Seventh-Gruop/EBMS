@@ -48,7 +48,7 @@ public class PayServiceImpl implements PayService {
                     predicates.add(cb.equal(root.<Boolean>get("user").get("username"),user.getUsername()));
                 }
 
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
                 Date startDate = null;
                 Date endDate = null;
                 try {
