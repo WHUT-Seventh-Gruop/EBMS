@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/pay")
@@ -48,7 +50,10 @@ public class PayController {
     public String electricityGetPaid(String id,HttpSession session)
     {
         User user = (User)session.getAttribute("user");
-        payService.electricityGetPaid(id,user.getUsername());
+        Date date = new Date();
+        System.out.println(date);
+
+        payService.electricityGetPaid(id,user.getUsername(),date);
         return "/paymentplatform.html";
     }
 }

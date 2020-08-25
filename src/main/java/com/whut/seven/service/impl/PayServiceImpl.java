@@ -16,7 +16,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,7 +76,7 @@ public class PayServiceImpl implements PayService {
     }
 
     @Override
-    public void electricityGetPaid(String id, String username) {
-        payDao.electricityGetPaid(id,username);
+    public void electricityGetPaid(String id, String username, Date date) {
+        payDao.electricityGetPaid(id,username,date);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 
 /**
  * @author:SUN HAOKAI
@@ -15,6 +16,6 @@ public interface PayDao  extends JpaRepository<Electricity, Long>, JpaSpecificat
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE t_electricity SET is_pay = true, user_username = ?2  WHERE id = ?1"  , nativeQuery = true)
-    void electricityGetPaid(String id, String username);
+    @Query(value = "UPDATE t_electricity SET is_pay = true, user_username = ?2, pay_time = ?3  WHERE id = ?1"  , nativeQuery = true)
+    void electricityGetPaid(String id, String username, Date date);
 }
