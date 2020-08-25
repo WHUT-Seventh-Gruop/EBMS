@@ -4,7 +4,7 @@
   <title>校园电费缴费平台-查询</title>
   <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
 </head>
-  
+
 <body>
 
 <div class="lyear-layout-web">
@@ -21,50 +21,47 @@
     </header>
     <!--End 头部信息-->
 
-    
+
     <!--页面主要内容-->
-    <main class="lyear-layout-content">     
+    <main class="lyear-layout-content">
       <div class="container-fluid">
-   
         <div class="card-body">
-          
+
+          <input type="hidden" name="page">
           <div class="search-area-payhistory">
-            <div class="form-group">
-              <h4><strong>缴费单位/时间</strong></h4>
-            </div>
+              <div class="form-group">
+                <h4><strong>缴费单位/时间</strong></h4>
+              </div>
+
+              <div class="search-area-bill-top-left">
+                <select class="form-control"  id="campus" name="campus" size="1" onchange="changeCampus()">
+                </select>
+              </div>
+
+              <div class="search-area-bill-top-medium">
+                <select class="form-control" id="buildings" name="buildingNo" size="1" onchange="changeBuildings()">
+                </select>
+              </div>
+
+              <div class="search-area-bill-top-right">
+                <select class="form-control"  id="dormitories" name="dormitoryNo"  size="1">
+                </select>
+              </div>
+
+              <div class="search-area-bill-top-right-right">
+                <input class="form-control js-datepicker m-b-10" type="text" id="create_time" name="date" placeholder="年份-月份" value="" data-date-format="yyyy-mm">
+              </div>
 
 
-            <form th:action="@{/electricity/findAllPaying}">
-            <div class="search-area-bill-top-left">
-              <select class="form-control"  id="campus" name="campus" size="1" onchange="changeCampus()">
-              </select>
-            </div>
+              <div class="search-area-payhistory-right">
+                <button class="btn btn-dark mybtn" id="search"><i class="mdi mdi-search-web"></i><strong>查询</strong></button>
+              </div>
 
-            <div class="search-area-bill-top-medium">
-              <select class="form-control" id="buildings" name="buildingNo" size="1" onchange="changeBuildings()">
-              </select>
-            </div>
+            <div class="vain-area"></div>
+            <div class="table-responsive"  id="table-container" th:fragment="billUpdateArea">
+              <table class="table table-bordered">
 
-            <div class="search-area-bill-top-right">
-              <select class="form-control"  id="dormitories" name="dormitoryNo"  size="1">
-              </select>
-            </div>
-
-            <div class="search-area-bill-top-right-right">
-              <input class="form-control js-datepicker m-b-10" type="text" id="create_time" name="date" placeholder="年份-月份" value="" data-date-format="yyyy-mm">
-            </div>
-
-           
-            <div class="search-area-payhistory-right">
-              <button class="btn btn-dark mybtn" type="submit"><i class="mdi mdi-search-web"></i><strong>查询</strong></button>
-          </div>
-            </form>
-
-         <div class="vain-area"></div>
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              
-              <thead>
+                <thead>
                 <tr>
                   <th>编号</th>
                   <th>校区</th>
@@ -76,33 +73,37 @@
                   <th>是否支付</th>
                   <th>操作</th>
                 </tr>
-              </thead>
-              <tbody>
-
-              </tbody>
-            </table>
-          </div>
-
-            <div class="pagination">
-              <a href="#!"class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-left-thick"></i>上一页</a>
-              <a href="#!" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-right-thick"></i>下一页</a>
+                </thead>
+                <tbody>
+                <tr th:each="electricity,iterStat:${allElectricity.content}">
+                  <td th:text="${electricity.id}">1</td>
+                  <td th:text="${electricity.payUnit.campus}">余家头校区</td>
+                  <td th:text="${electricity.payUnit.buildingNo}">海虹4栋</td>
+                  <td th:text="${electricity.payUnit.dormitoryNo}">401</td>
+                  <td th:text="${#dates.format(electricity.createTime,'yyyy-MM')}">2012/12</td>
+                  <td th:text="${electricity.electricityConsumption}">50度</td>
+                  <td th:text="${electricity.electricCharge}">100元</td>
+                  <td th:text="${electricity.isPay==true?'是':'否'}">是</td>
+                  <td>
+                    <div class="btn-group">
+                      <a th:unless="${electricity.isPay==true}" class="btn btn-xs btn-default" th:href="@{/electricity/findById(id=${electricity.id})}" title="缴费" data-toggle="tooltip"><i class="mdi  mdi-cash-usd"></i></a>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <div class="pagination" th:if="${allElectricity.totalPages>=1}">
+                <a onclick="page(this)" th:attr="data-page=${allElectricity.number}-1" th:unless="${allElectricity.first}" class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-left-thick"></i>上一页</a>
+                <a onclick="page(this)" th:attr="data-page=${allElectricity.number}+1" th:unless="${allElectricity.last}"  class="btn btn-secondary btn-sm" ><i class="mdi mdi-arrow-right-thick"></i>下一页</a>
+              </div>
             </div>
-      </div>    
+          </div>
     </main>
     <!--End 页面主要内容-->
   </div>
 </div>
 
 
-
-
-<!--日期选择插件-->
-<script src="../static/js/bootstrap-datepicker/bootstrap-datepicker.min.js" th:src="@{js/bootstrap-datepicker/bootstrap-datepicker.min.js}"></script>
-<script src="../static/js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js" th:src="@{/js/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js}"></script>
-<!--时间选择插件-->
-<script src="js/bootstrap-datetimepicker/moment.min.js" th:src="@{/js/bootstrap-datetimepicker/moment.min.js}"></script>
-<script src="js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"th:src="@{js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
-<script src="js/bootstrap-datetimepicker/locale/zh-cn.js" th:src="@{/js/bootstrap-datetimepicker/locale/zh-cn.js}"></script>
 <script>
 
   loadCampus();
@@ -198,40 +199,28 @@
 
   }
 
-  function search() {
 
-    var campus = $("#campus").val();
-    var building = $("#buildings").val();
-    var dormitory = $("#dormitories").val();
-    var date = $("#date").val();
+  function page(obj) {
+    $("input[name=page]").val($(obj).data("page"));
+    loaddata();
+    console.log( $("input[name=page]").val());
+  }
 
+  // 提交搜索
+  $("#search").click(function () {
+    $("input[name=page]").val(0);
+    loaddata();
+  });
 
-    $.ajax({
-      url:"/electricity/findAllElectricitiesNotPaid",
-      type:"GET",
-      dataType:"JSON",
-      data:{
-        campus:campus,
-        building:building,
-        dormitory:dormitory,
-        date:date
-      },
-      success:function(data){
-        console.log(data[1]);
-        for(var i = 0 ; i < data.length ; i ++){
-          $("#dormitories").append("<option value="+data[i]+">"+data[i]+"</option>");
-          console.log(data[i])
-        }
-
-
-
-      },
-      error:function () {
-        $("#message1").text("请先登录")
-        $("#myModal").show()
-      }
-    })
-
+  // 局部刷新搜索
+  function  loaddata(){
+    $("#table-container").load("/electricity/findAllPaying",{
+      page : $("input[name=page]").val(),
+      date:$("input[name=date]").val(),
+      buildingNo:$("select[name=buildingNo]").val(),
+      dormitoryNo:$("select[name=dormitoryNo]").val(),
+      campus:$("select[name=campus]").val(),
+    });
   }
 
 

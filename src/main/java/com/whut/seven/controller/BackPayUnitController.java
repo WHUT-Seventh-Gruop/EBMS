@@ -65,7 +65,7 @@ public class BackPayUnitController {
         List<PayUnit> findPayUnits = t1.toList();
         if (payUnit.getDormitoryNo()==""||payUnit.getCampus()==""||payUnit.getBuildingNo()=="") {
             model.addAttribute("message", "增加信息为空，请重试!");
-        } else if(findPayUnits.size()==0) {
+        } else if(findPayUnits.size()!=0) {
             model.addAttribute("message", "增加信息已存在，请重试!");
         }else {
                 PayUnit t = this.backPayUnitService.addPayUnit(payUnit);

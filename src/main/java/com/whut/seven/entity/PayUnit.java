@@ -22,7 +22,7 @@ public class PayUnit {
     /**
      * 校区
      */
-    private String campus;
+    private String campus="";
     /**
      * 楼号
      */

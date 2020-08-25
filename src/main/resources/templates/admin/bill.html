@@ -74,7 +74,7 @@
                                         <tbody>
                                         <tr th:each="electricity,iterStat:${page.content}">
                                             <td th:text="${iterStat.count}">1</td>
-                                            <td th:text="${electricity.payUnit!=null?electricity.payUnit.campus+',':''}+${electricity.payUnit!=null?electricity.payUnit.buildingNo+',':''}+${electricity.payUnit!=null?electricity.payUnit.dormitoryNo+',':''}">
+                                            <td th:text="${electricity.payUnit!=null?electricity.payUnit.campus+'':''}+${electricity.payUnit!=null?electricity.payUnit.buildingNo+'':''}+${electricity.payUnit!=null?electricity.payUnit.dormitoryNo+'':''}">
                                                 余家头校区海虹4栋401
                                             </td>
                                             <td th:text="${electricity.user!=null? electricity.user.username :''}">15272841065</td>

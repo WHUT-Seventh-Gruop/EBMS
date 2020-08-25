@@ -49,7 +49,7 @@ public class MyConfig {
                 registry.addViewController("/common.html").setViewName("common");
                 registry.addViewController("/pay.html").setViewName("pay");
                 registry.addViewController("/billsearch.html").setViewName("billsearch");
-                registry.addViewController("/billsearch1.html").setViewName("billsearch1");
+                registry.addViewController("/billsearch.html").setViewName("billsearch");
                 registry.addViewController("/paymentplatform.html").setViewName("paymentplatform");
                 registry.addViewController("paysuccess.html").setViewName("paysuccess");
                 registry.addViewController("/payhistory.html").setViewName("payhistory");
