@@ -101,7 +101,7 @@ public class ElectricityController {
 
     @RequestMapping("/findAllPaying")
     public String findAllPaying(PayUnitQuery payUnit,
-                                 @PageableDefault(size = 8, sort = "createTime", direction = Sort.Direction.DESC) Pageable pageable,
+                                 @PageableDefault(size = 5, sort = "createTime", direction = Sort.Direction.DESC) Pageable pageable,
                                 Model model,
                                 HttpSession session
     ) throws ParseException {
