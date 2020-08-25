@@ -26,7 +26,7 @@
         <!--页面主要内容-->
         <main class="lyear-layout-content">
 
-            <div class="ui container" >
+            <div class="container-fluid" >
 
 
                 <div class="row">
@@ -34,7 +34,7 @@
                         <div class="card" style="margin-top: 5%;background-color: #f5f6fa">
                             <div class="card-toolbar clearfix" style="padding-top: 8%;background-color:#FFFFFF;padding-bottom: 8%;border-radius: 10px;box-shadow: 0 0 30px #aaaaaa">
 
-                                <form class="ui form" th:action="@{/admin/PayUnit/savePayUnit}" method="post"  >
+                                <form class="ui form form-horizontal" th:action="@{/admin/PayUnit/savePayUnit}" method="post"  >
 <!--                                    <div class="form-group">-->
 <!--                                        <label class="col-md-2 control-label col-md-offset-1" for="id">宿舍id</label>-->
 <!--                                        <div class="col-md-8">-->
@@ -66,15 +66,18 @@
                                         <div class="col-xs-6" style="text-align: center">
                                             <button class="btn btn-secondary"  type="submit">添加</button>
                                         </div>
+                                        <div class="col-xs-6" style="text-align: center">
+                                            <button class="btn btn-secondary" id="returnBtn" th:action="@{/admin/PayUnit}" type="submit">返回</button>
+                                        </div>
                                     </div>
                                 </form>
-                               <form th:action="@{/admin/PayUnit}">
-                                   <div class="form-group" style="margin-top: 32px">
-                                       <div class="col-xs-6" style="text-align: center">
-                                           <button class="btn btn-secondary" id="returnBtn" type="submit">返回</button>
-                                       </div>
-                                   </div>
-                               </form>
+<!--                               <form th:action="@{/admin/PayUnit}">-->
+<!--                                   <div class="form-group" style="margin-top: 32px">-->
+<!--                                       <div class="col-xs-6" style="text-align: center">-->
+<!--                                           <button class="btn btn-secondary" id="returnBtn" th:action="@{/admin/PayUnit}" type="submit">返回</button>-->
+<!--                                       </div>-->
+<!--                                   </div>-->
+<!--                               </form>-->
                             </div>
                         </div>
                     </div>
@@ -96,13 +99,13 @@
     $('.ui.dropdown').dropdown({
         on : 'hover'
     });
-    
+
     $('.ui.form').form({
-        
+
         fields : {
             id : {
                 identifier: 'id',
-                
+
                 rules: [{
                     type : 'empty',
                     prompt: '请输入区域id'
