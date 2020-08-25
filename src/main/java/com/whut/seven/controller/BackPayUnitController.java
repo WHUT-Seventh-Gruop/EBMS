@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -60,14 +61,16 @@ public class BackPayUnitController {
     @PostMapping("/PayUnit/savePayUnit")
     public String savePayUnit(@PageableDefault(size = 5, sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable,
                               PayUnit payUnit, RedirectAttributes ras, Model model) {
-        if (payUnit.getId() == null) {
-            model.addAttribute("message", "增加信息ID为空，请重试!");
-        } else {
-            PayUnit t = this.backPayUnitService.addPayUnit(payUnit);
-            model.addAttribute("message", "更新操作成功!");
-        }
-
-
+         Page<PayUnit> t1 = backPayUnitService.listPayUnit(pageable, payUnit);
+        List<PayUnit> findPayUnits = t1.toList();
+        if (payUnit.getDormitoryNo()==""||payUnit.getCampus()==""||payUnit.getBuildingNo()=="") {
+            model.addAttribute("message", "增加信息为空，请重试!");
+        } else if(findPayUnits.size()==0) {
+            model.addAttribute("message", "增加信息已存在，请重试!");
+        }else {
+                PayUnit t = this.backPayUnitService.addPayUnit(payUnit);
+                model.addAttribute("message", "更新操作成功!");
+            }
         model.addAttribute("campus", backPayUnitService.listCampus());
         model.addAttribute("building_no", backPayUnitService.listBuildingNo());
         model.addAttribute("page", backPayUnitService.findAllPayUnit(pageable));
