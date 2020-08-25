@@ -6,9 +6,10 @@
     <title>校园电费缴费平台-登陆</title>
     <!-- Meta tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <!-- Meta tags -->
     <!-- font-awesome icons -->
+    <link rel="icon" href="favicon.ico" type="image/ico">
     <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet">
     <!-- //font-awesome icons -->
     <!--stylesheets-->
@@ -26,12 +27,12 @@
                 <form action="#" method="post" th:action="@{/login/login1}">
                     <div class="form-left-to-w3l">
                         <span class="fa fa-user-o" aria-hidden="true"></span>
-                        <input type="username" name="username" autocomplete="off"  placeholder="用户名" required="">                   
+                        <input type="username" name="username" autocomplete="off"  placeholder="用户名" required="">
                     </div>
                     <div class="form-left-to-w3l ">
                         <span class="fa fa-lock" aria-hidden="true"></span>
-                        <input type="password" name="password" autocomplete="off"  placeholder="密码" required="">                    
-                    </div>                
+                        <input type="password" name="password" autocomplete="off"  placeholder="密码" required="">
+                    </div>
                     <div class="btnn">
                         <button type="submit">登陆 </button>
                     </div>
@@ -44,9 +45,9 @@
                     <h3 th:text="${message}"><strong></strong>
                     </h3>
                 </div>
-              
+
             </div>
-            <div class="img-right-side">              
+            <div class="img-right-side">
                 <img src="../static/images/whutlogo.png"th:src="@{/images/whutlogo.png}"  class="img-fluid" alt="">
                 <h3></h3>
                 <img src="../static/images/ad_img.jpg" th:src="@{/images/ad_img.jpg}" class="img-fluid" alt="">

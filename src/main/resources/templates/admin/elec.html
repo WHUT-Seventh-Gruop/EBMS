@@ -10,6 +10,7 @@
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/perfect-scrollbar.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/admin-main.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/echarts.min.js}"></script>
 </head>
 <body>
 <div class="lyear-layout-web">
@@ -67,14 +68,15 @@
 
                 <div class="row">
 
-                    <div class="col-lg-8">
+                    <div class="col-lg-9 col-lg-offset-1">
                         <div class="card">
                             <div class="card-header">
                                 <h4 style="color: #5b60ad;font-weight: bold">各校区用电量对比</h4>
                             </div>
                             <div class="card-body">
                                 <!--考虑用饼状图或者柱状图 体现校区用电量对比-->
-                                <canvas class="js-chartjs-bars"></canvas>
+<!--                                <canvas class="js-chartjs-bars"></canvas>-->
+                                <div id="bar" style="width: 650px;height: 400px;"></div>
                             </div>
                         </div>
                     </div>
@@ -122,27 +124,83 @@
             console.log(label1);
             console.log(data1);
             $(document).ready(function(e) {
-                var $dashChartBarsCnt  = jQuery( '.js-chartjs-bars' )[0].getContext( '2d' );
-
-                var $dashChartBarsData = {
-                    labels: label1,
-                    datasets: [
+                var bar = echarts.init(document.getElementById("bar"));
+                var option = {
+                    color:'#4d5192',
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            magicType: { type: ['line', 'bar'] },
+                            saveAsImage: {}
+                        },
+                        top: '1%',
+                        right: '5%'
+                    },
+                    tooltip: {
+                        trigger: 'item'
+                    },
+                    grid: {
+                        top: '12%',
+                        left: '1%',
+                        right: '10%',
+                        containLabel: true
+                    },
+                    xAxis: [
                         {
-                            label: '校区编号',
-                            borderWidth: 1,
-                            borderColor: 'rgba(0,0,0,0)',
-                            backgroundColor: 'rgba(51,202,185,0.5)',
-                            hoverBackgroundColor: "rgba(51,202,185,0.7)",
-                            hoverBorderColor: "rgba(0,0,0,0)",
-                            data: data1
+                            type: 'category',
+                            name: '校区编号',
+                            data: label1
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value',
+                            name: '用电量'
+                        }
+                    ],
+
+                    series: [
+                        {
+                            name: '用电量',
+
+                            type:"bar",
+                            data: data1,
+                            itemStyle:{
+                                normal:{
+                                    color:'#4d5192'
+                                }
+                            },
+                            lineStyle:{
+                                color:'#4d5192'
+                            }
                         }
                     ]
-                };
-
-                new Chart($dashChartBarsCnt, {
-                    type: 'bar',
-                    data: $dashChartBarsData
-                });
+                }
+               bar.setOption(option);
+                window.onresize=function () {
+                    bar.resize();
+                }
+                // var $dashChartBarsCnt  = jQuery( '.js-chartjs-bars' )[0].getContext( '2d' );
+                //
+                // var $dashChartBarsData = {
+                //     labels: label1,
+                //     datasets: [
+                //         {
+                //             label: '校区编号',
+                //             borderWidth: 1,
+                //             borderColor: 'rgba(0,0,0,0)',
+                //             backgroundColor: 'rgba(51,202,185,0.5)',
+                //             hoverBackgroundColor: "rgba(51,202,185,0.7)",
+                //             hoverBorderColor: "rgba(0,0,0,0)",
+                //             data: data1
+                //         }
+                //     ]
+                // };
+                //
+                // new Chart($dashChartBarsCnt, {
+                //     type: 'bar',
+                //     data: $dashChartBarsData
+                // });
 
             });
         }
