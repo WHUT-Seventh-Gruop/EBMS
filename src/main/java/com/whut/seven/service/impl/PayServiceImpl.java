@@ -80,4 +80,7 @@ public class PayServiceImpl implements PayService {
     public void electricityGetPaid(String id, String username) {
         payDao.electricityGetPaid(id,username);
     }
+
+
+
 }

@@ -33,7 +33,7 @@
                         <div class="card" style="background-color: #3a3d6e;border-radius: 5px">
                             <div class="card-body clearfix">
                                 <div class="pull-right">
-                                    <p class="h6 text-white m-t-0">本月总用电量</p>
+                                    <p class="h6 text-white m-t-0">上月总用电量</p>
                                     <p class="h3 text-white m-b-0" name="elecSum" th:text="${electricityConsumptionSum}">102,125.00</p>
                                 </div>
                                 <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-ceiling-light fa-1-5x"></i></span> </div>
@@ -57,7 +57,7 @@
                         <div class="card" style="background-color: #5b60ad;border-radius: 5px">
                             <div class="card-body clearfix">
                                 <div class="pull-right">
-                                    <p class="h6 text-white m-t-0">本月电费汇总</p>
+                                    <p class="h6 text-white m-t-0">上月电费汇总</p>
                                     <p class="h3 text-white m-b-0" name="billSum" th:text="${sumElectricityChargeThisMonth}">34,005,000</p>
                                 </div>
                                 <div class="pull-left"> <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-currency-cny fa-1-5x"></i></span> </div>
@@ -71,7 +71,7 @@
                     <div class="col-lg-9 col-lg-offset-1">
                         <div class="card">
                             <div class="card-header">
-                                <h4 style="color: #5b60ad;font-weight: bold">各校区用电量对比</h4>
+                                <h4 style="color: #5b60ad;font-weight: bold">各宿舍总用电量对比</h4>
                             </div>
                             <div class="card-body">
                                 <!--考虑用饼状图或者柱状图 体现校区用电量对比-->
@@ -148,7 +148,7 @@
                     xAxis: [
                         {
                             type: 'category',
-                            name: '校区编号',
+                            name: '宿舍编号',
                             data: label1
                         }
                     ],
