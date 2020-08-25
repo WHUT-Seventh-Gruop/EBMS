@@ -1,5 +1,6 @@
 package com.whut.seven;
 
+import com.whut.seven.test.CreateBills;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -18,6 +19,8 @@ public class EmsApplication {
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
+
+
     }
 
 }

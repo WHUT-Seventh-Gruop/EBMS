@@ -31,14 +31,14 @@ public interface ElectricityDao extends JpaRepository<Electricity, String>, JpaS
      * SELECT * FROM 表名 WHERE DATE_FORMAT( 时间字段名, ‘%Y%m' ) = DATE_FORMAT( CURDATE( ) , ‘%Y%m' )
      * @return 本月的所有电力消耗
      */
-    @Query(nativeQuery = true , value = "select sum(e.electricity_consumption) from t_electricity e where DATE_FORMAT(e.create_time, '%Y%m' )  = DATE_FORMAT( CURDATE( ) , '%Y%m' )")
+    @Query(nativeQuery = true , value = "select sum(e.electricity_consumption) from t_electricity e where DATE_FORMAT(e.create_time, '%Y%m' )  = DATE_FORMAT( DATE_ADD(CURDATE( ),INTERVAL -1 MONTH) , '%Y%m' )")
     double calSumElectricityConsumption();
 
     /**
      * 计算本月的所有电费
      * @return 本月的所有电费
      */
-    @Query(nativeQuery = true , value = "select sum(e.electric_charge) from t_electricity e where DATE_FORMAT(e.create_time, '%Y%m' )  = DATE_FORMAT( CURDATE( ) , '%Y%m' )")
+    @Query(nativeQuery = true , value = "select sum(e.electric_charge) from t_electricity e where DATE_FORMAT(e.create_time, '%Y%m' )  = DATE_FORMAT( DATE_ADD(CURDATE( ),INTERVAL -1 MONTH), '%Y%m' )")
     double calSumElectricityCharge();
 
 
