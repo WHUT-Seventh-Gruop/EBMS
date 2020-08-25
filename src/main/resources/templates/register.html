@@ -31,11 +31,13 @@
                     </div>
                     <div class="form-left-to-w3l ">
                         <span class="fa fa-lock" aria-hidden="true"></span>
-                        <input type="password" name="password" autocomplete="off"  placeholder="密码" required="">                    
+                        <input type="password" name="password" autocomplete="off"  id="password" placeholder="密码" required="">
                     </div>   
                     <div class="form-left-to-w3l ">
                         <span class="fa fa-lock" aria-hidden="true"></span>
-                        <input type="password" name="repassword" autocomplete="off"  placeholder="确认密码" required="">                    
+                        <input type="password" name="repassword" autocomplete="off" id="repassword" placeholder="确认密码" required="">
+                        <span class="fa fa-smile-o"  id="passwordcorrect"  style="display:none;" aria-hidden="true"></span>
+                        <span class="fa fa-frown-o"  id="passworduncorrect" style="display:none;" aria-hidden="true"></span>
                     </div>               
                     <div class="btnn">
                         <button type="submit">注册</button>
@@ -110,6 +112,35 @@
             }
         })
 
+    }
+
+
+
+    //中文处理
+    $('#repassword').on('input propertychange', function () {//input propertychange 当输入框里的值有变化时执行此函数
+        if ($(this).prop('cnStart')) return;//如果正在执行中文输入时，此值为true，执行return=>下面代码不执行
+    }).on('compositionstart', function () {//compositionstart 当输入框有非直接的文字输入时触发(如：输入拼音在待选状态时)
+        $(this).prop('cnStart', true);
+        console.log('正在中文输入');//将 cnStart 变为 true，此处执行完后会跳到
+    }).on('compositionend', function () {//compositionend 当输入框有直接的文字输入时触发(如：输入拼音后完成了中文选择时)
+        $(this).prop('cnStart', false);
+        checkPassword();
+    });
+
+    //英文处理
+    $("#repassword").live('keyup', function () {
+        checkPassword();
+    });
+
+    function   checkPassword(){
+        console.log($("#password").val()+"" +$("#repassword").val());
+        if($("#password").val()!=$("#repassword").val()){
+            $("#passwordcorrect").hide();
+            $("#passworduncorrect").show();
+        }else{
+            $("#passwordcorrect").show();
+            $("#passworduncorrect").hide();
+        }
     }
 </script>
 
