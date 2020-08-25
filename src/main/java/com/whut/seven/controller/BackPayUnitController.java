@@ -63,14 +63,16 @@ public class BackPayUnitController {
                               PayUnit payUnit, RedirectAttributes ras, Model model) {
          Page<PayUnit> t1 = backPayUnitService.listPayUnit(pageable, payUnit);
         List<PayUnit> findPayUnits = t1.toList();
+        
         if (payUnit.getDormitoryNo()==""||payUnit.getCampus()==""||payUnit.getBuildingNo()=="") {
             model.addAttribute("message", "增加信息为空，请重试!");
-        } else if(findPayUnits.size()==0) {
+        } else if(findPayUnits.size()!=0) {
             model.addAttribute("message", "增加信息已存在，请重试!");
         }else {
                 PayUnit t = this.backPayUnitService.addPayUnit(payUnit);
                 model.addAttribute("message", "更新操作成功!");
             }
+        
         model.addAttribute("campus", backPayUnitService.listCampus());
         model.addAttribute("building_no", backPayUnitService.listBuildingNo());
         model.addAttribute("page", backPayUnitService.findAllPayUnit(pageable));
