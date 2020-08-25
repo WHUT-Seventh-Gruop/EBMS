@@ -7,6 +7,7 @@
     <link th:href="@{/css/materialdesignicons.min.css}" rel="stylesheet">
     <link th:href="@{/css/admin-style.min.css}" rel="stylesheet">
 
+    <link rel="icon" href="favicon.ico" type="image/ico">
     <script type="text/javascript" th:src="@{/js/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/perfect-scrollbar.min.js}"></script>
@@ -25,26 +26,26 @@
 
         <nav class="sidebar-main">
             <ul class="nav nav-drawer">
-                <li class="nav-item" th:classappend="${n}==1?'active':''">
-                    <a th:href="@{/back/electricity/elec}" href="index.html"><i class="mdi mdi-home"></i> 电费统计</a>
+                <li class="nav-item" th:classappend="${n}==1?'active':''" style="color: #4d5192">
+                    <a th:href="@{/back/electricity/elec}" href="index.html"><i class="mdi mdi-pulse"></i> 电费统计</a>
                 </li>
                 <li class="nav-item" th:classappend="${n}==2?'active':''">
-                    <a th:href="@{/admin/PayUnit}" href="javascript:void(0)"><i class="mdi mdi-palette"></i>区域信息管理</a>
+                    <a th:href="@{/admin/PayUnit}" href="javascript:void(0)"><i class="mdi mdi-grid"></i>区域信息管理</a>
                 </li>
                 <li class="nav-item" th:classappend="${n}==3?'active':''">
-                    <a th:href="@{/back/electricity/all}" href="javascript:void(0)"><i class="mdi mdi-format-align-justify"></i> 电费账单管理</a>
+                    <a th:href="@{/back/electricity/all}" href="javascript:void(0)"><i class="mdi mdi-receipt"></i> 电费账单管理</a>
                 </li>
                 <li class="nav-item" th:classappend="${n}==4?'active':''">
-                    <a th:href="@{/admin-password.html}" href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 修改密码</a>
+                    <a th:href="@{/admin-password.html}" href="javascript:void(0)"><i class="mdi mdi-account-circle"></i> 修改密码</a>
                 </li>
                 <li class="nav-item" th:classappend="${n}==5?'active':''" th:unless="${session.user.role!=3}">
-                    <a th:href="@{/admin/admins}" href="javascript:void(0)"><i class="mdi mdi-file-outline"></i> 管理员管理</a>
+                    <a th:href="@{/admin/admins}" href="javascript:void(0)"><i class="mdi mdi-account-card-details"></i> 管理员管理</a>
                 </li>
             </ul>
         </nav>
 
-        <div class="sidebar-footer">
-            <p class="copyright">Copyright &copy; 2020. <a target="_blank" href="http://www.whut.edu.cn/">武汉理工大学</a> All rights reserved.</p>
+        <div class="sidebar-footer" style="position: fixed;bottom: 0">
+            <p class="copyright">Copyright &copy; 2020. <a target="_blank" href="http://www.whut.edu.cn/" style="color: #4d5192">武汉理工大学</a> All rights reserved.</p>
         </div>
     </div>
 
@@ -68,7 +69,7 @@
 
             <ul class="topbar-right">
                 <li class="dropdown dropdown-profile">
-                    <a href="javascript:void(0)" data-toggle="dropdown">
+                    <a href="javascript:void(0)" data-toggle="dropdown" style="color: #4d5192">
                         <span th:text="${session.user.username}"> <span class="caret"></span></span>
                         <i class="mdi-emoticon-cool mdi"></i>
                         <span th:text="${session.user.role}==2?'管理员':'超级管理员'"> <span class="caret"></span></span>
